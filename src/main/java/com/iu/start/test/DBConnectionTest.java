@@ -2,7 +2,7 @@ package com.iu.start.test;
 
 import java.sql.Connection;
 
-import iu.com.start.util.DBConnector;
+import com.iu.start.util.DBConnector;
 
 public class DBConnectionTest {
 

@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import iu.com.start.util.DBConnector;
+
+import com.iu.start.util.DBConnector;
 
 public class BankMembersDAO implements MembersDAO{
 

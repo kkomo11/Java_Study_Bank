@@ -19,12 +19,12 @@ public class BankBookTest {
 //			int result = bankBookDAO.setBankBook(bankBookDTO);
 //			System.out.println(result);
 			//----------------------------------------------------
-//			arr = bankBookDAO.getList();
-//			for(int i=0; i<arr.size(); i++) {
-//				System.out.println(arr.get(i).getBookNum() + "\t" + 
-//						arr.get(i).getBookName() + "\t" + arr.get(i).getBookRate() +
-//						"\t" + arr.get(i).getBooksale());
-//			}
+			arr = bankBookDAO.getList();
+			for(int i=0; i<arr.size(); i++) {
+				System.out.println(arr.get(i).getBookNum() + "\t" + 
+						arr.get(i).getBookName() + "\t" + arr.get(i).getBookRate() +
+						"\t" + arr.get(i).getBooksale());
+			}
 			//------------------------------------------------------
 			int row = bankBookDAO.setChangeSale(bankBookDTO);
 			System.out.println(row);

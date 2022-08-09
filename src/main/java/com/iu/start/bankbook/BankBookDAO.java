@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import iu.com.start.util.DBConnector;
+import com.iu.start.util.DBConnector;
 
 public class BankBookDAO implements BookDAO {
 
