@@ -29,7 +29,7 @@
 					<td><%= dto.getBookName() %></td>
 					<td><%= dto.getBookRate() %></td>
 					<td>
-						<% if(dto.getBooksale() == 1) { %> 
+						<% if(dto.getBookSale() == 1) { %> 
 							판매중
 						<%} else { %>
 							비매품
