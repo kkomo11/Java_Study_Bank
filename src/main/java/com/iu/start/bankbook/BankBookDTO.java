@@ -4,7 +4,7 @@ public class BankBookDTO {
 	private Long bookNum;
 	private String bookName;
 	private Double bookRate;
-	private Integer booksale;
+	private Integer bookSale;
 	
 	public Long getBookNum() {
 		return bookNum;
@@ -30,11 +30,11 @@ public class BankBookDTO {
 		this.bookRate = bookRate;
 	}
 	
-	public Integer getBooksale() {
-		return booksale;
+	public Integer getBookSale() {
+		return bookSale;
 	}
 	
-	public void setBooksale(Integer booksale) {
-		this.booksale = booksale;
+	public void setBookSale(Integer booksale) {
+		this.bookSale = booksale;
 	}	
 }

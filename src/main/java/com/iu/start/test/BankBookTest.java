@@ -23,7 +23,7 @@ public class BankBookTest {
 			for(int i=0; i<arr.size(); i++) {
 				System.out.println(arr.get(i).getBookNum() + "\t" + 
 						arr.get(i).getBookName() + "\t" + arr.get(i).getBookRate() +
-						"\t" + arr.get(i).getBooksale());
+						"\t" + arr.get(i).getBookSale());
 			}
 			//------------------------------------------------------
 			int row = bankBookDAO.setChangeSale(bankBookDTO);

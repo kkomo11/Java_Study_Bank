@@ -39,7 +39,7 @@ public class BankBookDAO implements BookDAO {
 			bankBookDTO.setBookNum(rs.getLong("BOOKNUM"));
 			bankBookDTO.setBookName(rs.getString("BOOKNAME"));
 			bankBookDTO.setBookRate(rs.getDouble("BOOKRATE"));
-			bankBookDTO.setBooksale(rs.getInt("BOOKSALE"));
+			bankBookDTO.setBookSale(rs.getInt("BOOKSALE"));
 			
 			arr.add(bankBookDTO);
 		}
@@ -93,7 +93,7 @@ public class BankBookDAO implements BookDAO {
 			dto.setBookNum(rs.getLong("BOOKNUM"));
 			dto.setBookName(rs.getString("BOOKNAME"));
 			dto.setBookRate(rs.getDouble("BOOKRATE"));
-			dto.setBooksale(rs.getInt("BOOKSALE"));
+			dto.setBookSale(rs.getInt("BOOKSALE"));
 		}
 		return dto;
 	}
