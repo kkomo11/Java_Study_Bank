@@ -12,8 +12,6 @@
 <body>
 	<h1>BankBook List</h1>
 	<!-- /book/list -->
-	<!-- /book/detail jsp:detail.jsp 링크는 상대경로 -->
-	<a href="./detail">Detail</a>
 	<% ArrayList<BankBookDTO> arr = (ArrayList<BankBookDTO>) request.getAttribute("list"); %>
 	
 	<table border="1">
@@ -31,5 +29,7 @@
 			<% }%>
 		</tbody>
 	</table>
+	
+	<a href="add">상품 등록</a>
 </body>
 </html>

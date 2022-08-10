@@ -1,8 +1,11 @@
 package com.iu.start.bankmembers;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller 
 @RequestMapping(value = "/member/*")
@@ -15,11 +18,19 @@ public class MemberController {
 	// @ : 설명 + 실행
 	
 	// /member/login
-	@RequestMapping(value = "login")
+	@RequestMapping(value = "login", method = RequestMethod.GET)
 	public String login() {
 		System.out.println("Login 실행");
 		
 		return "member/login";
+	}
+	
+	@RequestMapping(value = "login", method = RequestMethod.POST)
+	public String login(BankMembersDTO bankMembersDTO) {
+		System.out.println("Login 실행");
+		
+		// redirect 방법 => redirect:URL 주소(절대 or 상대)
+		return "redirect:../";
 	}
 	
 	// /member/join GET
@@ -43,6 +54,25 @@ public class MemberController {
 			System.out.println("성공");
 		}
 		
-		return "member/join";
+		return "redirect:login";
+	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public ModelAndView getSearchById(ModelAndView mv) {
+		System.out.println("Search Get 실행");
+		mv.setViewName("member/search");
+		
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "search", method = RequestMethod.POST)
+	public ModelAndView getSearchById(ModelAndView mv, String search) throws Exception {
+		System.out.println("Search Post 실행");
+		
+		ArrayList<BankMembersDTO> arr = bankMembersDAO.getSearchByID(search);
+		mv.setViewName("member/list");
+		mv.addObject("search", arr);
+		return mv;
 	}
 }

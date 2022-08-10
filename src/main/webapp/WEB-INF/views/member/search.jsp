@@ -7,14 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Add Page</h1>
-	
-	<form action="add" method="post">
-		<p>BookName</p>
-		<input type="text" name="bookName">
-		<p>BookRate</p>
-		<input type="text" name="bookRate">
-		<br><br>
+	<h1>Search Page</h1>
+	<form action="search" method="post">
+		ID 검색 <input type="text" name="search">
 		<input type="submit">
 	</form>
 </body>

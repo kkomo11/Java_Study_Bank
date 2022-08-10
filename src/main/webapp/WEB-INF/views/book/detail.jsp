@@ -15,6 +15,8 @@
 	<a href="/member/join">Join</a>
 	<% BankBookDTO dto = (BankBookDTO) request.getAttribute("detail"); %>
 	
+	<a href="list">리스트 보기</a>
+	
 	<%if(dto != null) { %>
 		<table border="1">
 			<thead>
