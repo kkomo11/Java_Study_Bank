@@ -39,6 +39,13 @@ public class BankBookTest {
 //			} else {
 //				System.out.println("해당 번호는 없습니다.");
 //			}
+			
+			bankBookDTO.setBookNum(1L);
+			bankBookDTO.setBookName("321");
+			bankBookDTO.setBookRate(3.12);
+			int result = bankBookDAO.setUpdate(bankBookDTO);
+			System.out.println(result == 1);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

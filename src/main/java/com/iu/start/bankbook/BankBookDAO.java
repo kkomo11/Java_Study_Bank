@@ -98,4 +98,31 @@ public class BankBookDAO implements BookDAO {
 		return dto;
 	}
 
+	@Override
+	public int setUpdate(BankBookDTO bankBookDTO) throws Exception {
+		// TODO Auto-generated method stub
+		Connection con = DBConnector.getConnection();
+		String sql = "UPDATE BANKBOOK SET BOOKNAME=? , BOOKRATE=? WHERE BOOKNUM=?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setString(1, bankBookDTO.getBookName());
+		st.setDouble(2, bankBookDTO.getBookRate());
+		st.setLong(3, bankBookDTO.getBookNum());
+		int result = st.executeUpdate();
+		
+		DBConnector.disConnection(st, con);
+		return result;
+	}
+
+	@Override
+	public int setDelete(BankBookDTO bankBookDTO) throws Exception {
+		// TODO Auto-generated method stub
+		Connection con = DBConnector.getConnection();
+		String sql = "DELETE BANKBOOK WHERE BOOKNUM = ?";
+		PreparedStatement st = con.prepareStatement(sql);
+		st.setLong(1, bankBookDTO.getBookNum());
+		int result = st.executeUpdate();
+		
+		DBConnector.disConnection(st, con);
+		return result;
+	}
 }

@@ -49,4 +49,33 @@ public class BookController {
 		mv.setViewName("redirect:list");
 		return mv;
 	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.GET)
+	public ModelAndView update(BankBookDTO dto, ModelAndView mv) throws Exception {
+		dto = bankBookDAO.getDetail(dto);
+		mv.addObject("detail", dto);
+		System.out.println("Update Get 실행");
+		mv.setViewName("book/update");
+		return mv;
+	}
+	
+	@RequestMapping(value = "update", method = RequestMethod.POST)
+	public ModelAndView update(BankBookDTO dto) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		System.out.println("Update POST 실행");
+		int result = bankBookDAO.setUpdate(dto);
+		System.out.println(result==1);
+//		mv.setViewName("redirect:detail?bookNum="+dto.getBookNum());
+		mv.setViewName("redirect:list");
+		return mv;
+	}
+	
+	@RequestMapping(value = "delete", method = RequestMethod.GET)
+	public ModelAndView delete(BankBookDTO dto) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = bankBookDAO.setDelete(dto);
+		System.out.println(result == 1);
+		mv.setViewName("redirect:list");
+		return mv;
+	}
 }

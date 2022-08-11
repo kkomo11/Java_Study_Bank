@@ -1,8 +1,6 @@
-<%@page import="com.iu.start.bankbook.BankBookDTO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.iu.start.bankbook.BankBookDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +10,6 @@
 <body>
 	<h1>BankBook List</h1>
 	<!-- /book/list -->
-	<% ArrayList<BankBookDTO> arr = (ArrayList<BankBookDTO>) request.getAttribute("list"); %>
 	
 	<table border="1">
 		<thead>
@@ -21,12 +18,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% for(BankBookDTO dto : arr) { %>	
+			<c:forEach items="${list}" var = "dto">
+			
 				<tr>
-					<td><a href="detail?bookNum=<%=dto.getBookNum()%>"><%= dto.getBookName() %></a></td>
-					<td><%= dto.getBookRate() %> </td>
+					<td><a href="detail?bookNum=${dto.bookNum}">${dto.bookName}</a></td>
+					<td>${dto.bookRate}</td>
 				</tr>
-			<% }%>
+			</c:forEach>
+
 		</tbody>
 	</table>
 	
