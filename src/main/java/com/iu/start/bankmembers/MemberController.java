@@ -2,6 +2,8 @@ package com.iu.start.bankmembers;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,25 +21,25 @@ public class MemberController {
 	// @ : 설명 + 실행
 	
 	// /member/login
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping(value = "login.iu", method = RequestMethod.GET)
 	public String login() {
 		System.out.println("Login 실행");
 		
 		return "member/login";
 	}
 	
-	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public String login(BankMembersDTO bankMembersDTO, Model model) throws Exception {
+	@RequestMapping(value = "login.iu", method = RequestMethod.POST)
+	public String login(BankMembersDTO bankMembersDTO, Model model, HttpSession session) throws Exception {
 		System.out.println("Login 실행");
 		bankMembersDTO = bankMembersDAO.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
-		model.addAttribute("member", bankMembersDTO);
+		session.setAttribute("member", bankMembersDTO);
 		// redirect 방법 => redirect:URL 주소(절대 or 상대)
 		return "redirect:../";
 	}
 	
 	// /member/join GET
-	@RequestMapping(value = "join", method = RequestMethod.GET)
+	@RequestMapping(value = "join.iu", method = RequestMethod.GET)
 	public String join() {
 		System.out.println("join GET 실행");
 		
@@ -46,7 +48,7 @@ public class MemberController {
 	
 	// /member/join POST
 	// 절대경로로 작성
-	@RequestMapping(value = "join", method = RequestMethod.POST)
+	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
 	public String join(BankMembersDTO bankMembersDTO) throws Exception {
 		System.out.println("join POST 실행");
 		
@@ -57,10 +59,10 @@ public class MemberController {
 			System.out.println("성공");
 		}
 		
-		return "redirect:login";
+		return "redirect:login.iu";
 	}
 	
-	@RequestMapping(value = "search", method = RequestMethod.GET)
+	@RequestMapping(value = "search.iu", method = RequestMethod.GET)
 	public ModelAndView getSearchById(ModelAndView mv) {
 		System.out.println("Search Get 실행");
 		mv.setViewName("member/search");
@@ -69,7 +71,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "search", method = RequestMethod.POST)
+	@RequestMapping(value = "search.iu", method = RequestMethod.POST)
 	public ModelAndView getSearchById(ModelAndView mv, String search) throws Exception {
 		System.out.println("Search Post 실행");
 		
@@ -77,5 +79,14 @@ public class MemberController {
 		mv.setViewName("member/list");
 		mv.addObject("search", arr);
 		return mv;
+	}
+	
+	@RequestMapping(value = "logout.iu", method = RequestMethod.GET)
+	public String logout(HttpSession session) throws Exception {
+		System.out.println("LogOut 실행");
+		// 대개 세션을 소멸시킴
+		
+		session.invalidate();
+		return "redirect:../";
 	}
 }

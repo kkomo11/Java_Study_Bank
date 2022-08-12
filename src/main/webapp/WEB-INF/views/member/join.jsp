@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Join Page</h1>
-	<form action="join" method="post">
+	<form action="join.iu" method="post">
 	<div>
         <h3>회원가입</h3>
         <p>ID</p>

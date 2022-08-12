@@ -9,12 +9,12 @@
 <body>
 	<h1>Login Page</h1>
 	<h3>ID 로그인</h3>
-	<form action="./login" method="post">	
+	<form action="login.iu" method="post">	
     <div>
         <p>ID</p>
-        <input type="text" name="id">
+        <input type="text" name="id" value="id4">
         <p>PW</p>
-        <input type="password" name="pw">
+        <input type="password" name="pw" value="pw4">
         <br>
         <input type="checkbox" name="cb"> 로그인 상태 유지
     </div>

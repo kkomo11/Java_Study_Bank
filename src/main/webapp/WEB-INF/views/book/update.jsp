@@ -9,7 +9,7 @@
 <body>
 	<h1>Update Page</h1>
 	
-	<form action="update", method="post">
+	<form action="update.iu", method="post">
 		<div>
 			Num : <input type="text" name="bookNum" value="${detail.bookNum}" readonly="readonly">
 		</div>

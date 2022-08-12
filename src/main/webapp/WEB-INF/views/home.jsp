@@ -9,19 +9,20 @@
 <h1>
 	Hello world!
 </h1>
-<% System.out.println(request.getAttribute("member")); %>
+
 <P>  The time on the server is ${serverTime}. </P>
-<c:if test="${member eq null}">
-	<a href="./member/login">Login</a>
-	<a href="./member/join">Join</a>
+<c:if test="${sessionScope.member eq null}">
+	<a href="./member/login.iu">Login</a>
+	<a href="./member/join.iu">Join</a>
 </c:if>
 
 <c:if test="${member ne null}">
-	<a href="#">Logout</a>
+	<h3>${member.name}님 환영합니다.</h3>
+	<a href="./member/logout.iu">Logout</a>
 	<a href="#">MyPage</a>
 </c:if>
 
-<a href="./member/search">Search</a>
-<a href="./book/list">List</a>
+<a href="./member/search.iu">Search</a>
+<a href="./book/list.iu?member=${member}">List</a>
 </body>
 </html>

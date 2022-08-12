@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>Search Page</h1>
-	<form action="search" method="post">
+	<form action="search.iu" method="post">
 		ID 검색 <input type="text" name="search">
 		<input type="submit">
 	</form>
