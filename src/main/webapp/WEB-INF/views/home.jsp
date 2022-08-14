@@ -24,5 +24,6 @@
 
 <a href="./member/search.iu">Search</a>
 <a href="./book/list.iu?member=${member}">List</a>
+<a href="./board/list.iu">BoardList</a>
 </body>
 </html>
