@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class BoardService {
 	
 	@Autowired
-	BankBoardDAO bankBoardDAO;
+	private BankBoardDAO bankBoardDAO;
 	
 	ArrayList<BankBoardDTO> getList() throws Exception {
 		return bankBoardDAO.getList();

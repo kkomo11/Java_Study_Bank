@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class AccountService {
 	
 	@Autowired
-	BankAccountDAO bankAccountDAO;
+	private BankAccountDAO bankAccountDAO;
 	
 	int setAccount(BankAccountDTO bankAccountDTO) throws Exception {
 		return bankAccountDAO.setAccount(bankAccountDTO);

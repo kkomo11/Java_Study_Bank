@@ -1,6 +1,6 @@
 package com.iu.start.bankbook;
 
-import java.util.ArrayList;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,14 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class BookController {
 	
 	@Autowired
-	BookService bookService;
+	private BookService bookService;
 	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		System.out.println("리스트 실행");
 		
-		ArrayList<BankBookDTO> arr = bookService.getList();
-		model.addAttribute("list", arr);
+		model.addAttribute("list", bookService.getList());
 		return "book/list";
 	}
 	
@@ -47,6 +46,8 @@ public class BookController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public ModelAndView add(BankBookDTO bankBookDTO, ModelAndView mv) throws Exception {
 		
+		Calendar ca = Calendar.getInstance();	
+		bankBookDTO.setBookNum(ca.getTimeInMillis());
 		System.out.println("add Post 실행");
 		int result = bookService.setBankBook(bankBookDTO);
 		System.out.println(result == 1);

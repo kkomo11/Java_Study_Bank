@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iu.start.bankbook.BankBookDAO">
+	<insert id="setBankBook" parameterType="com.iu.start.bankbook.BankBookDTO">
+		INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, 1)
+	</insert>
+	
+	<select id="getList" resultType="com.iu.start.bankbook.BankBookDTO">
+		SELECT * FROM BANKBOOK ORDER BY BOOKNUM DESC
+	</select>
+	
+	<update id="setChangeSale">
+		UPDATE BANKBOOK SET BOOKSALE = (
+    CASE booksale
+    WHEN 1 THEN booksale-1
+    WHEN 0 THEN booksale+1
+    END
+) WHERE BOOKNUM = 2
+	</update>
+</mapper>

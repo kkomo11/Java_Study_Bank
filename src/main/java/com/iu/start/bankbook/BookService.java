@@ -1,6 +1,6 @@
 package com.iu.start.bankbook;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,14 +9,14 @@ import org.springframework.stereotype.Service;
 public class BookService {
 
 	@Autowired
-	BankBookDAO bankBookDAO;
+	private BankBookDAO bankBookDAO;
 	
 	int setBankBook(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.setBankBook(bankBookDTO);
 	}
 	
 	// BankBook에 있는 모든 데이터 조회 최신순 정렬
-	ArrayList<BankBookDTO> getList() throws Exception {
+	List<BankBookDTO> getList() throws Exception {
 		return bankBookDAO.getList();
 	}
 	

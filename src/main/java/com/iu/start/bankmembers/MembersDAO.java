@@ -1,6 +1,6 @@
 package com.iu.start.bankmembers;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface MembersDAO {
 	
@@ -8,7 +8,7 @@ public interface MembersDAO {
 	int setJoin(BankMembersDTO bankMembersDTO) throws Exception;
 	
 	// 검색어 입력 ID 찾기 abc순
-	ArrayList<BankMembersDTO> getSearchByID(String search) throws Exception;
+	List<BankMembersDTO> getSearchByID(String search) throws Exception;
 	
 	BankMembersDTO getLogin(BankMembersDTO bankMembersDTO) throws Exception;
 }

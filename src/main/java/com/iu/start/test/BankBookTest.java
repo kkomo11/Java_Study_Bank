@@ -19,7 +19,7 @@ public class BankBookTest {
 //			int result = bankBookDAO.setBankBook(bankBookDTO);
 //			System.out.println(result);
 			//----------------------------------------------------
-			arr = bankBookDAO.getList();
+			arr = (ArrayList<BankBookDTO>) bankBookDAO.getList();
 			for(int i=0; i<arr.size(); i++) {
 				System.out.println(arr.get(i).getBookNum() + "\t" + 
 						arr.get(i).getBookName() + "\t" + arr.get(i).getBookRate() +

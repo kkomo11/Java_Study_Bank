@@ -26,7 +26,7 @@
 			<h3>${pageScope.i}</h3>
 		</c:forEach> -->
 		
-		<c:forEach items="${requestScope.search}" var="dto">
+		<c:forEach items="${requestScope.list}" var="dto">
 			<tr>
 				<td>${pageScope.dto.id}</td>
 				<td>${pageScope.dto.name}</td>

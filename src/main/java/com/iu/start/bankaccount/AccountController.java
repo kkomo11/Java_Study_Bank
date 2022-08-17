@@ -14,7 +14,7 @@ import com.iu.start.bankmembers.BankMembersDTO;
 public class AccountController {
 	
 	@Autowired
-	AccountService accountService;
+	private AccountService accountService;
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
 	public String setAccount(BankAccountDTO bankAccountDTO, HttpSession session) throws Exception {

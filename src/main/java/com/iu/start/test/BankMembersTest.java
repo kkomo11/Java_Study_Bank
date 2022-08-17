@@ -24,7 +24,7 @@ public class BankMembersTest {
 			if(result == 1) text = "성공";
 			System.out.println(text);
 			
-			arr = bankMembersDAO.getSearchByID("2");
+			arr = (ArrayList<BankMembersDTO>) bankMembersDAO.getSearchByID("2");
 			for(int i=0; i<arr.size(); i++) {
 				System.out.println(arr.get(i).getId());
 				System.out.println(arr.get(i).getPw());
