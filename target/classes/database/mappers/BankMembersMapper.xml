@@ -7,4 +7,13 @@
 			resultType="com.iu.start.bankmembers.BankMembersDTO">
 			SELECT ID, NAME FROM BANKMEMBERS WHERE ID=#{id} and PW=#{pw}
 		</select>
+		
+		<select id="getSearchByID" parameterType="java.lang.String"
+			resultType="com.iu.start.bankmembers.BankMembersDTO">
+			SELECT * FROM BANKMEMBERS WHERE ID LIKE '%'||#{search}||'%' ORDER BY ID ASC
+		</select>
+		
+		<insert id="setJoin" parameterType="com.iu.start.bankmembers.BankMembersDTO">
+			INSERT INTO BANKMEMBERS VALUES (#{id}, #{pw}, #{name}, #{email}, #{phone})
+		</insert>
 	</mapper>
