@@ -2,6 +2,7 @@ package com.iu.start.board;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,16 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(value = "/board/*")
 public class BoardController {
 
-	BankBoardDAO bankBoardDAO;
-	
-	public BoardController() {
-		bankBoardDAO = new BankBoardDAO();
-	}
+	@Autowired
+	BoardService boardService;
 	
 	@RequestMapping(value = "/list.iu", method = RequestMethod.GET)
 	public String getList(Model model) throws Exception {
 		
-		ArrayList<BankBoardDTO> arr = bankBoardDAO.getList();
+		ArrayList<BankBoardDTO> arr = boardService.getList();
 		model.addAttribute("list", arr);
 		
 		return "/board/list";
@@ -34,7 +32,7 @@ public class BoardController {
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
 	public String setWriting(BankBoardDTO bankBoardDTO) throws Exception {
 
-		int result = bankBoardDAO.setWriting(bankBoardDTO);
+		int result = boardService.setWriting(bankBoardDTO);
 		System.out.println(result == 1);
 		
 		return "redirect:list.iu";
@@ -43,9 +41,9 @@ public class BoardController {
 	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
 	public String getDetail(BankBoardDTO bankBoardDTO, Model model) throws Exception {
 		
-		int result = bankBoardDAO.addHit(bankBoardDTO);
+		int result = boardService.addHit(bankBoardDTO);
 		System.out.println(result == 1);
-		bankBoardDTO = bankBoardDAO.getDetail(bankBoardDTO);
+		bankBoardDTO = boardService.getDetail(bankBoardDTO);
 		model.addAttribute("detail", bankBoardDTO);
 		
 		return "/board/detail";
@@ -58,7 +56,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
 	public String update(BankBoardDTO bankBoardDTO) throws Exception {
-		int result = bankBoardDAO.updateWriting(bankBoardDTO);
+		int result = boardService.updateWriting(bankBoardDTO);
 		System.out.println(result == 1);
 		
 		return "redirect:list.iu";
@@ -66,7 +64,7 @@ public class BoardController {
 	
 	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
 	public String delete(BankBoardDTO bankBoardDTO) throws Exception {
-		int result = bankBoardDAO.deleteWriting(bankBoardDTO);
+		int result = boardService.deleteWriting(bankBoardDTO);
 		System.out.println(result == 1);
 		
 		return "redirect:list.iu";

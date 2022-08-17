@@ -13,4 +13,6 @@ public interface BoardDAO {
 	int updateWriting(BankBoardDTO bankBoardDTO) throws Exception;
 	
 	int deleteWriting(BankBoardDTO bankBoardDTO) throws Exception;
+	
+	public int addHit(BankBoardDTO bankBoardDTO) throws Exception;
 }

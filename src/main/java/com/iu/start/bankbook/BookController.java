@@ -1,6 +1,8 @@
 package com.iu.start.bankbook;
 
 import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +13,14 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/book/*")
 public class BookController {
 	
-	BankBookDAO bankBookDAO = new BankBookDAO();
+	@Autowired
+	BookService bookService;
+	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
 	public String list(Model model) throws Exception {
 		System.out.println("리스트 실행");
 		
-		ArrayList<BankBookDTO> arr = bankBookDAO.getList();
+		ArrayList<BankBookDTO> arr = bookService.getList();
 		model.addAttribute("list", arr);
 		return "book/list";
 	}
@@ -26,7 +30,7 @@ public class BookController {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("디테일 실행");
 		System.out.println(bankBookDTO.getBookNum());
-		bankBookDTO = bankBookDAO.getDetail(bankBookDTO);
+		bankBookDTO = bookService.getDetail(bankBookDTO);
 		mv.addObject("detail", bankBookDTO);
 		mv.setViewName("book/detail");
 		return mv;
@@ -44,7 +48,7 @@ public class BookController {
 	public ModelAndView add(BankBookDTO bankBookDTO, ModelAndView mv) throws Exception {
 		
 		System.out.println("add Post 실행");
-		int result = bankBookDAO.setBankBook(bankBookDTO);
+		int result = bookService.setBankBook(bankBookDTO);
 		System.out.println(result == 1);
 		mv.setViewName("redirect:list.iu");
 		return mv;
@@ -52,7 +56,7 @@ public class BookController {
 	
 	@RequestMapping(value = "update.iu", method = RequestMethod.GET)
 	public ModelAndView update(BankBookDTO dto, ModelAndView mv) throws Exception {
-		dto = bankBookDAO.getDetail(dto);
+		dto = bookService.getDetail(dto);
 		mv.addObject("detail", dto);
 		System.out.println("Update Get 실행");
 		mv.setViewName("book/update");
@@ -63,7 +67,7 @@ public class BookController {
 	public ModelAndView update(BankBookDTO dto) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		System.out.println("Update POST 실행");
-		int result = bankBookDAO.setUpdate(dto);
+		int result = bookService.setUpdate(dto);
 		System.out.println(result==1);
 //		mv.setViewName("redirect:detail?bookNum="+dto.getBookNum());
 		mv.setViewName("redirect:list.iu");
@@ -73,7 +77,7 @@ public class BookController {
 	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
 	public ModelAndView delete(BankBookDTO dto) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		int result = bankBookDAO.setDelete(dto);
+		int result = bookService.setDelete(dto);
 		System.out.println(result == 1);
 		mv.setViewName("redirect:list.iu");
 		return mv;

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,7 +17,8 @@ import org.springframework.web.servlet.ModelAndView;
 // Container에게 이 클래스의 객체를 생성을 위임.
 public class MemberController {
 	
-	BankMembersDAO bankMembersDAO = new BankMembersDAO();
+	@Autowired
+	MembersService membersService;
 	// annotation
 	// @ : 설명 + 실행
 	
@@ -31,7 +33,7 @@ public class MemberController {
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST)
 	public String login(BankMembersDTO bankMembersDTO, Model model, HttpSession session) throws Exception {
 		System.out.println("Login 실행");
-		bankMembersDTO = bankMembersDAO.getLogin(bankMembersDTO);
+		bankMembersDTO = membersService.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
 		// redirect 방법 => redirect:URL 주소(절대 or 상대)
@@ -52,7 +54,7 @@ public class MemberController {
 	public String join(BankMembersDTO bankMembersDTO) throws Exception {
 		System.out.println("join POST 실행");
 		
-		int result = bankMembersDAO.setJoin(bankMembersDTO);
+		int result = membersService.setJoin(bankMembersDTO);
 		if(result == 0) {
 			System.out.println("실패");
 		} else {
@@ -75,7 +77,7 @@ public class MemberController {
 	public ModelAndView getSearchById(ModelAndView mv, String search) throws Exception {
 		System.out.println("Search Post 실행");
 		
-		ArrayList<BankMembersDTO> arr = bankMembersDAO.getSearchByID(search);
+		ArrayList<BankMembersDTO> arr = membersService.getSearchByID(search);
 		mv.setViewName("member/list");
 		mv.addObject("search", arr);
 		return mv;

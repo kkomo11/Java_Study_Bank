@@ -3,8 +3,11 @@ package com.iu.start.bankaccount;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
+import org.springframework.stereotype.Repository;
+
 import com.iu.start.util.DBConnector;
 
+@Repository
 public class BankAccountDAO implements AccountDAO {
 
 	@Override

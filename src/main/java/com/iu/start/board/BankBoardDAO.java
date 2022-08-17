@@ -4,9 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
+import org.springframework.stereotype.Repository;
 import com.iu.start.util.DBConnector;
 
+@Repository
 public class BankBoardDAO implements BoardDAO{
 
 	@Override
@@ -100,21 +101,15 @@ public class BankBoardDAO implements BoardDAO{
 		return result;
 	}
 	
+	@Override
 	public int addHit(BankBoardDTO bankBoardDTO) throws Exception {
 		Connection con = DBConnector.getConnection();
-		String sql = "SELECT HIT FROM BOARD WHERE NO = ?";
+		String sql = "UPDATE BOARD SET HIT = HIT+1 WHERE NO = ?";
 		PreparedStatement st = con.prepareStatement(sql);
 		st.setInt(1, bankBoardDTO.getNo());
-		ResultSet rs = st.executeQuery();
-		if(rs.next()) bankBoardDTO.setHit(rs.getInt("HIT"));
-		
-		sql = "UPDATE BOARD SET HIT = ? WHERE NO = ?";
-		st = con.prepareStatement(sql);
-		st.setInt(1, bankBoardDTO.getHit()+1);
-		st.setInt(2, bankBoardDTO.getNo());
 		int result = st.executeUpdate();
+		DBConnector.disConnection(st, con);
 		
-		DBConnector.disConnection(rs, st, con);
 		return result;
 	}
 }
