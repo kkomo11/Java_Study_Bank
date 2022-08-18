@@ -3,20 +3,33 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iu.start.bankbook.BankBookDAO">
-	<insert id="setBankBook" parameterType="com.iu.start.bankbook.BankBookDTO">
+	<insert id="setBankBook" parameterType="BankBookDTO">
 		INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, 1)
 	</insert>
 	
-	<select id="getList" resultType="com.iu.start.bankbook.BankBookDTO">
+	<select id="getList" resultType="BankBookDTO">
 		SELECT * FROM BANKBOOK ORDER BY BOOKNUM DESC
 	</select>
 	
-	<update id="setChangeSale">
+	<update id="setChangeSale" parameterType="BankBookDTO">
 		UPDATE BANKBOOK SET BOOKSALE = (
-    CASE booksale
-    WHEN 1 THEN booksale-1
-    WHEN 0 THEN booksale+1
-    END
-) WHERE BOOKNUM = 2
+   			CASE BOOKSALE
+   			WHEN 1 THEN BOOKSALE-1
+    		WHEN 0 THEN BOOKSALE+1
+    		END
+		) WHERE BOOKNUM = #{bookNum}
 	</update>
+	
+	<select id="getDetail" parameterType="BankBookDTO"
+		resultType="BankBookDTO">
+		SELECT * FROM BANKBOOK WHERE BOOKNUM = #{bookNum}
+	</select>
+	
+	<update id="setUpdate" parameterType="BankBookDTO">
+		UPDATE BANKBOOK SET BOOKNAME=#{bookName} , BOOKRATE=#{bookRate} WHERE BOOKNUM=#{bookNum}
+	</update>
+	
+	<delete id="setDelete" parameterType="BankBookDTO">
+		DELETE BANKBOOK WHERE BOOKNUM = #{bookNum}
+	</delete>
 </mapper>
