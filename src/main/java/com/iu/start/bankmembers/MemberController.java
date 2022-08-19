@@ -49,9 +49,10 @@ public class MemberController {
 	// /member/join POST
 	// 절대경로로 작성
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO) throws Exception {
+	public String join(BankMembersDTO bankMembersDTO, String email1, String email2) throws Exception {
 		System.out.println("join POST 실행");
-		
+		String email = email1+"@"+email2;
+		bankMembersDTO.setEmail(email);
 		int result = membersService.setJoin(bankMembersDTO);
 		if(result == 0) {
 			System.out.println("실패");

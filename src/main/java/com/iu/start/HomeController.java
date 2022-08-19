@@ -24,7 +24,7 @@ public class HomeController {
 		cookie.setMaxAge(600);
 		response.addCookie(cookie);
 		
-		return "home";
+		return "index";
 	}
 	
 }
