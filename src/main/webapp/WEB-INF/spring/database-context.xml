@@ -11,8 +11,8 @@
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="username" value="${oracle.userName}"></property>
 		<property name="password" value="${oracle.password}"></property>
-		<property name="url" value="${url}"></property>
-		<property name="driverClassName" value="${driver}"></property>
+		<property name="url" value="${oracle.url}"></property>
+		<property name="driverClassName" value="${oracle.driver}"></property>
 	</bean>
 	
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">

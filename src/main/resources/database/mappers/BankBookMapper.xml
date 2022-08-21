@@ -4,7 +4,7 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iu.start.bankbook.BankBookDAO">
 	<insert id="setBankBook" parameterType="BankBookDTO">
-		INSERT INTO BANKBOOK (BOOKNUM, BOOKNAME, BOOKRATE, BOOKSALE) VALUES (#{bookNum}, #{bookName}, #{bookRate}, 1)
+		INSERT INTO BANKBOOK VALUES (#{bookNum}, #{bookName}, #{bookRate}, 1, #{bookContents})
 	</insert>
 	
 	<select id="getList" resultType="BankBookDTO">
@@ -26,7 +26,7 @@
 	</select>
 	
 	<update id="setUpdate" parameterType="BankBookDTO">
-		UPDATE BANKBOOK SET BOOKNAME=#{bookName} , BOOKRATE=#{bookRate} WHERE BOOKNUM=#{bookNum}
+		UPDATE BANKBOOK SET BOOKNAME=#{bookName} , BOOKRATE=#{bookRate}, BOOKCONTENTS=#{bookContents} WHERE BOOKNUM=#{bookNum}
 	</update>
 	
 	<delete id="setDelete" parameterType="BankBookDTO">
