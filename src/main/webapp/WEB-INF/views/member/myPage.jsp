@@ -21,14 +21,38 @@
 					<th>Phone</th>
 				</tr>
 			</thead>
-				
 			<tbody>
 				<tr>
-					<td>${getMyPage.id}</td>
-					<td>${getMyPage.name}</td>
-					<td>${getMyPage.email}</td>
-					<td>${getMyPage.phone}</td>
+					<%-- <td>${map.dto.id}</td>
+					<td>${map.dto.name}</td>
+					<td>${map.dto.email}</td>
+					<td>${map.dto.phone}</td> --%>
+					<td>${requestScope.dto.id}</td>
+					<td>${dto.name}</td>
+					<td>${dto.email}</td>
+					<td>${dto.phone}</td>
 				</tr>
+			</tbody>
+		</table>
+		
+		<table border="1" class="table table-striped">
+			<thead>
+				<tr>
+					<th>AccountNum</th>
+					<th>BookName</th>
+					<th>AccountDate</th>
+				</tr>
+			</thead>
+				
+			<tbody>
+					<%-- <c:forEach items="${map.list}" var="dto"> --%>
+					 <c:forEach items="${dto.bankAccountDTOs}" var="dto">
+						<tr>
+							<td>${pageScope.dto.accountNum}</td>
+							<td>${pageScope.dto.bankBookDTO.bookName}</td>
+							<td>${pageScope.dto.accountDate}</td>
+						</tr>
+					</c:forEach> 
 			</tbody>
 		</table>
 	</section>

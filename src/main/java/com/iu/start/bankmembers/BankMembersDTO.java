@@ -1,16 +1,29 @@
 package com.iu.start.bankmembers;
 
+import java.util.List;
+
+import com.iu.start.bankaccount.BankAccountDTO;
+
 public class BankMembersDTO {
 	private String id;
 	private String pw;
 	private String name;
 	private String email;
 	private String phone;
+	private List<BankAccountDTO> bankAccountDTOs;
+	
+	public List<BankAccountDTO> getBankAccountDTOs() {
+		return bankAccountDTOs;
+	}
+	
+	public void setBankAccountDTOs(List<BankAccountDTO> bankAccountDTO) {
+		this.bankAccountDTOs = bankAccountDTO;
+	}
 	
 	public String getId() {
 		return id;
 	}
-	
+
 	public void setId(String id) {
 		this.id = id;
 	}

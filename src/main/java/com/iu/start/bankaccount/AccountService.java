@@ -5,17 +5,19 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.iu.start.bankmembers.BankMembersDTO;
+
 @Service
 public class AccountService {
 	
 	@Autowired
 	private BankAccountDAO bankAccountDAO;
 	
-	int setAccount(BankAccountDTO bankAccountDTO) throws Exception {
+	public int setAccount(BankAccountDTO bankAccountDTO) throws Exception {
 		return bankAccountDAO.setAccount(bankAccountDTO);
 	}
 	
-	List<Object[]> getList(BankAccountDTO bankAccountDTO) throws Exception {
-		return bankAccountDAO.getList(bankAccountDTO);
+	public List<BankAccountDTO> getList(BankMembersDTO bankMembersDTO) throws Exception {
+		return bankAccountDAO.getList(bankMembersDTO);
 	}
 }

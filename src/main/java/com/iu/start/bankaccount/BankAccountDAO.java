@@ -6,6 +6,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.iu.start.bankmembers.BankMembersDTO;
+
 @Repository
 public class BankAccountDAO implements AccountDAO {
 
@@ -21,9 +23,9 @@ public class BankAccountDAO implements AccountDAO {
 	}
 	
 	@Override
-	public List<Object[]> getList(BankAccountDTO bankAccountDTO) throws Exception {
+	public List<BankAccountDTO> getList(BankMembersDTO bankMembersDTO) throws Exception {
 		// TODO Auto-generated method stub
 
-		return sqlSession.selectList(NAMESPACE+"getList", bankAccountDTO);
+		return sqlSession.selectList(NAMESPACE+"getList", bankMembersDTO);
 	}
 }
