@@ -19,7 +19,7 @@
 		
 		<select id="myPage" parameterType="BankMembersDTO"
 			resultMap="getMyResultMap">
-			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE
+			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE 
 			FROM BANKMEMBERS bm
 			JOIN BANKACCOUNT ba
 			ON bm.ID = ba.ID
