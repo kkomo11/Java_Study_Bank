@@ -30,4 +30,10 @@ public class BankMembersDAO implements MembersDAO{
 		
 		return sqlSession.selectOne(NAMESPACE+"getLogin", bankMembersDTO);
 	}
+
+	@Override
+	public BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(NAMESPACE+"myPage", bankMembersDTO);
+	}
 }

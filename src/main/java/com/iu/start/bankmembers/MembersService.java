@@ -23,4 +23,8 @@ public class MembersService {
 	BankMembersDTO getLogin(BankMembersDTO bankMembersDTO) throws Exception {
 		return bankMembersDAO.getLogin(bankMembersDTO);
 	}
+	
+	BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception {
+		return bankMembersDAO.myPage(bankMembersDTO);
+	}
 }

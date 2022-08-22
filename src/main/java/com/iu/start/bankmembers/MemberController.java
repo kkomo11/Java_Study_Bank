@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankaccount.AccountService;
+
 @Controller 
 @RequestMapping(value = "/member/*")
 // 이 클래스는 Controller 역할,
@@ -17,6 +19,7 @@ public class MemberController {
 	
 	@Autowired
 	private MembersService membersService;
+	
 	// annotation
 	// @ : 설명 + 실행
 	
@@ -89,5 +92,10 @@ public class MemberController {
 		
 		session.invalidate();
 		return "redirect:../";
+	}
+	
+	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
+	public void myPage(HttpSession session, Model model) throws Exception {
+		model.addAttribute("getMyPage", membersService.myPage((BankMembersDTO) session.getAttribute("member")));
 	}
 }

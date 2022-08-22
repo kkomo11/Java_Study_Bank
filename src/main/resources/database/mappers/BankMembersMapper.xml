@@ -16,4 +16,9 @@
 		<insert id="setJoin" parameterType="BankMembersDTO">
 			INSERT INTO BANKMEMBERS VALUES (#{id}, #{pw}, #{name}, #{email}, #{phone})
 		</insert>
+		
+		<select id="myPage" parameterType="BankMembersDTO"
+			resultType="BankMembersDTO">
+			SELECT * FROM BANKMEMBERS WHERE ID = #{id}
+		</select>
 	</mapper>

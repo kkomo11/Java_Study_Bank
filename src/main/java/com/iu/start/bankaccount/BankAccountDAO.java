@@ -1,26 +1,29 @@
 package com.iu.start.bankaccount;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
+import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.iu.start.util.DBConnector;
 
 @Repository
 public class BankAccountDAO implements AccountDAO {
 
+	@Autowired
+	private SqlSession sqlSession;
+	private final String NAMESPACE = "com.iu.start.bankaccount.BankAccountDAO.";
+	
 	@Override
 	public int setAccount(BankAccountDTO bankAccountDTO) throws Exception {
 		// TODO Auto-generated method stub
-		Connection con = DBConnector.getConnection();
-		String sql = "INSERT INTO BANKACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL,?,?,SYSDATE)";
-		PreparedStatement st = con.prepareStatement(sql);
-		st.setString(1, bankAccountDTO.getId());
-		st.setLong(2, bankAccountDTO.getBookNum());
-		int result = st.executeUpdate();
 		
-		DBConnector.disConnection(st, con);
-		return result;
+		return sqlSession.insert(NAMESPACE+"setAccount", bankAccountDTO);
+	}
+	
+	@Override
+	public List<Object[]> getList(BankAccountDTO bankAccountDTO) throws Exception {
+		// TODO Auto-generated method stub
+
+		return sqlSession.selectList(NAMESPACE+"getList", bankAccountDTO);
 	}
 }
