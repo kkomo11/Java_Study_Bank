@@ -28,7 +28,7 @@ public class QnaController {
 	public void getDetail(BoardDTO boardDTO, Model model) throws Exception {
 		
 		boardDTO = qnaService.getDetail(boardDTO);
-		model.addAttribute("dto", boardDTO);
+		model.addAttribute("detail", boardDTO);
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
@@ -55,9 +55,10 @@ public class QnaController {
 		return "redirect:detail.iu?num="+boardDTO.getNum();
 	}
 	
+	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
 	public String setDelete(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setDelete(boardDTO);
 		
-		return "redirect:list";
+		return "redirect:list.iu";
 	}
 }

@@ -2,6 +2,8 @@ package com.iu.start.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,11 +29,13 @@ public class NoticeController {
 	
 	// 글 상세
 	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
-	public void getDetail(BoardDTO boardDTO) throws Exception {
+	public ModelAndView getDetail(BoardDTO boardDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		boardDTO = noticeService.getDetail(boardDTO);
-		mv.addObject("dto", boardDTO);
+		mv.addObject("detail", boardDTO);
 		mv.setViewName("notice/detail");
+		
+		return mv;
 	}
 	
 	// 글 작성
@@ -62,6 +66,7 @@ public class NoticeController {
 	}	
 	
 	// 글 삭제
+	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
 	public String setDelete(BoardDTO boardDTO) throws Exception {
 		int result = noticeService.setDelete(boardDTO);
 		
