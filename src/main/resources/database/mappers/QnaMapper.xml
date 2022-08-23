@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.iu.start.board.qna.QnaDAO">
+		<select id="getList" resultType="QnaDTO">
+			SELECT * FROM QNA
+		</select>
+		
+		<select id="getDetail" parameterType="BoardDTO"
+			resultType="QnaDTO">
+			SELECT * FROM QNA WHERE NUM = #{num}
+		</select>
+		
+		<insert id="setAdd" parameterType="BoardDTO">
+			INSERT INTO QNA VALUES (QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, SYSDATE, 0, 0, 0, 0)
+		</insert>
+		
+		<update id="setUpdate" parameterType="BoardDTO">
+			UPDATE QNA SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
+		</update>
+		
+		<delete id="setDelete" parameterType="BoardDTO">
+			DELETE QNA WHERE NUM = #{num}
+		</delete>
+	</mapper>	

@@ -11,6 +11,7 @@
 		<typeAlias type="com.iu.start.bankbook.BankBookDTO" alias="BankBookDTO"/>
 		<typeAlias type="com.iu.start.bankaccount.BankAccountDTO" alias="BankAccountDTO"/>
 		<typeAlias type="com.iu.start.board.notice.NoticeDTO" alias="NoticeDTO"/>
+		<typeAlias type="com.iu.start.board.qna.QnaDTO" alias="QnaDTO"/>
 		<typeAlias type="com.iu.start.board.impl.BoardDTO" alias="BoardDTO"/>
 		
 	</typeAliases>

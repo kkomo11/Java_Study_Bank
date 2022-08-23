@@ -10,7 +10,7 @@ public class BankBookDTO {
 	private Double bookRate;
 	private Integer bookSale;
 	private String bookContents;
-	private List<BankAccountDTO> bankAccountDTO;
+	private List<BankAccountDTO> bankAccountDTOs;
 	
 	public Long getBookNum() {
 		return bookNum;
@@ -50,6 +50,14 @@ public class BankBookDTO {
 
 	public void setBookContents(String bookContents) {
 		this.bookContents = bookContents;
+	}
+
+	public List<BankAccountDTO> getBankAccountDTOs() {
+		return bankAccountDTOs;
+	}
+
+	public void setBankAccountsDTO(List<BankAccountDTO> bankAccountDTOs) {
+		this.bankAccountDTOs = bankAccountDTOs;
 	}
 
 }
