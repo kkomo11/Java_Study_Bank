@@ -11,20 +11,36 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-8 mt-5">
-		<form action="add.iu" method="post">
-			<input type="hidden" value="${member.id}" name="writer"> 
-			<div class="mb-3">
-				<label for="exampleFormControlInput1" class="form-label">Enter Title</label>
-				<input type="text" class="form-control" name="title">
-			</div>
-			<div class="input-group">
-	  			<span class="input-group-text">Enter Contents</span>
-	  			<textarea class="form-control" aria-label="With textarea" name="contents"></textarea>
-			</div>
-			<input type="submit">
-		</form>
-	</section>
-	
+		<h1>${board} Page</h1>
+		<a href="list.iu">리스트 보기</a>
+		<table border="1" class="table table-striped">
+			<thead>
+				<tr>
+					<th>Num</th>
+					<th>Title</th>
+					<th>Writer</th>
+					<th>RegDate</th>
+					<th>Hit</th>
+					<th>Contents</th>
+				</tr>
+			</thead>
+				
+			<tbody>
+				<tr>
+					<td>${detail.num}</td>
+					<td>${detail.title}</td>
+					<td>${detail.writer}</td>
+					<td>${detail.regDate}</td>
+					<td>${detail.hit}</td>
+					<td>${detail.contents}</td>
+				</tr>
+			</tbody>
+		</table>
+		<c:if test="${member.id eq detail.writer}">
+			<a href="update.iu?num=${detail.num}">수정</a>
+			<a href="delete.iu?num=${detail.num}">삭제</a>
+		</c:if>
+	</section>	
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

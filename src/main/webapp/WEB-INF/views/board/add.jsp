@@ -10,32 +10,22 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<section class="container-fluid container-lg-8 mt-3">
-		<table border="1" class="table table-striped">
-			<thead>
-				<tr>
-					<th>Num</th>
-					<th>Title</th>
-					<th>Writer</th>
-					<th>RegDate</th>
-					<th>Hit</th>
-				</tr>
-			</thead>
-			<tbody>
-				<c:forEach items="${list}" var = "dto">
-				
-					<tr>
-						<td>${dto.num}</td>
-						<td><a href="detail.iu?num=${dto.num}">${dto.title}</a></td>
-						<td>${dto.writer}</td>
-						<td>${dto.regDate}</td>
-						<td>${dto.hit}</td>
-					</tr>
-				</c:forEach>
-			</tbody>
-		</table>
-		<a href="add.iu">글 작성</a>
+	<section class="container-fluid col-lg-8 mt-5">
+		<h1>${board} Page</h1>
+		<form action="add.iu" method="post">
+			<input type="hidden" value="${member.id}" name="writer"> 
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">Enter Title</label>
+				<input type="text" class="form-control" name="title">
+			</div>
+			<div class="input-group">
+	  			<span class="input-group-text">Enter Contents</span>
+	  			<textarea class="form-control" aria-label="With textarea" name="contents"></textarea>
+			</div>
+			<input type="submit">
+		</form>
 	</section>
+	
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

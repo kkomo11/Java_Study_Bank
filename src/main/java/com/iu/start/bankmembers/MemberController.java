@@ -35,7 +35,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST)
 	public String login(BankMembersDTO bankMembersDTO, Model model, HttpSession session) throws Exception {
-		System.out.println("Login 실행");
 		bankMembersDTO = membersService.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
@@ -46,7 +45,6 @@ public class MemberController {
 	// /member/join GET
 	@RequestMapping(value = "join.iu", method = RequestMethod.GET)
 	public String join() {
-		System.out.println("join GET 실행");
 		
 		return "member/join";
 	}
@@ -59,18 +57,12 @@ public class MemberController {
 		String email = email1+"@"+email2;
 		bankMembersDTO.setEmail(email);
 		int result = membersService.setJoin(bankMembersDTO);
-		if(result == 0) {
-			System.out.println("실패");
-		} else {
-			System.out.println("성공");
-		}
 		
 		return "redirect:login.iu";
 	}
 	
 	@RequestMapping(value = "search.iu", method = RequestMethod.GET)
 	public ModelAndView getSearchById(ModelAndView mv) {
-		System.out.println("Search Get 실행");
 		mv.setViewName("member/search");
 		
 		
@@ -79,7 +71,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "search.iu", method = RequestMethod.POST)
 	public ModelAndView getSearchById(ModelAndView mv, String search) throws Exception {
-		System.out.println("Search Post 실행");
 		
 		List<BankMembersDTO> list = membersService.getSearchByID(search);
 		mv.setViewName("member/list");
@@ -89,7 +80,6 @@ public class MemberController {
 	
 	@RequestMapping(value = "logout.iu", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
-		System.out.println("LogOut 실행");
 		// 대개 세션을 소멸시킴
 		
 		session.invalidate();

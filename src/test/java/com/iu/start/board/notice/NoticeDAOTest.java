@@ -3,7 +3,10 @@ package com.iu.start.board.notice;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +19,16 @@ public class NoticeDAOTest extends MyAbstractTest {
 	@Autowired
 	private NoticeDAO noticeDAO;
 	
-	@Test
+//	@Test
 	public void getListTest() throws Exception {
-		List<BoardDTO> list = noticeDAO.getList();
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("startRow", 1L);
+		map.put("lastRow", 10L);
+		List<BoardDTO> list = noticeDAO.getList(map);
 		assertNotEquals(0, list.size());
 	}
 	
-	@Test
+///	@Test
 	public void getDetailTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNum(2L);
@@ -30,18 +36,24 @@ public class NoticeDAOTest extends MyAbstractTest {
 		assertNotNull(noticeDTO.getContents());
 	}
 	
-	@Test
+//	@Test
 	public void setAddTest() throws Exception {
-		NoticeDTO noticeDTO = new NoticeDTO();
-		noticeDTO.setTitle("title2");
-		noticeDTO.setContents("contents2");
-		noticeDTO.setWriter("writer2");
-		
-		int num = noticeDAO.setAdd(noticeDTO);
-		assertEquals(1, num);
+		for(int i=0; i<100; i++) {
+			NoticeDTO noticeDTO = new NoticeDTO();
+			noticeDTO.setTitle("title"+i);
+			noticeDTO.setContents("contents"+i);
+			noticeDTO.setWriter("writer"+i);
+			
+			int num = noticeDAO.setAdd(noticeDTO);
+			
+			if(i%10==0) {
+				Thread.sleep(500);
+			}
+		}
+//		assertEquals(1, num);
 	}
 	
-	@Test
+//	@Test
 	public void setUpdateTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNum(2L);
@@ -52,12 +64,18 @@ public class NoticeDAOTest extends MyAbstractTest {
 		assertEquals(1, num);
 	}
 	
-	@Test
+//	@Test
 	public void setDeleteTest() throws Exception {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNum(66L);
 		
 		int num = noticeDAO.setDelete(noticeDTO);
 		assertEquals(1, num);
+	}
+	
+	@Test
+	public void findCountTest() throws Exception {
+		Long result = noticeDAO.findCount();
+		assertEquals(0, result.compareTo(131L));
 	}
 }

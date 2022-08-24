@@ -4,8 +4,12 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
-	<select id="getList" resultType="NoticeDTO">
-		SELECT NUM,TITLE,WRITER,REGDATE,HIT FROM NOTICE ORDER BY NUM DESC
+	<select id="getList" parameterType="java.util.Map"
+		resultType="NoticeDTO">
+		SELECT * FROM
+    		(SELECT ROWNUM R, N.* FROM
+        		(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
+        WHERE R BETWEEN #{startRow} and #{lastRow}
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO"
@@ -24,4 +28,8 @@
 	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
+	
+	<select id="findCount" resultType="java.lang.Long">
+		SELECT COUNT(NUM) FROM NOTICE
+	</select>
 </mapper>

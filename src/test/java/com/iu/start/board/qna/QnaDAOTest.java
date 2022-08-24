@@ -2,7 +2,9 @@ package com.iu.start.board.qna;
 
 import static org.junit.Assert.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +37,10 @@ public class QnaDAOTest extends MyAbstractTest {
 	
 	@Test
 	public void getListTest() throws Exception {
-		List<BoardDTO> list = qnaDAO.getList();
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("startRow", 1L);
+		map.put("lastRow", 10L);
+		List<BoardDTO> list = qnaDAO.getList(map);
 		assertNotEquals(0, list.size());
 	}
 	

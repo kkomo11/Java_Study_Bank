@@ -10,7 +10,8 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<section class="container-fluid container-lg-8 mt-3">
+	<section class="container-fluid container-lg-6 mt-3">
+		<h1 class="alian-center">${board} Page</h1>
 		<table border="1" class="table table-striped">
 			<thead>
 				<tr>
@@ -34,7 +35,9 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<a href="add.iu">글 작성</a>
+		<c:if test="${not empty member}">
+			<a href="add.iu">글 작성</a>
+		</c:if>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
