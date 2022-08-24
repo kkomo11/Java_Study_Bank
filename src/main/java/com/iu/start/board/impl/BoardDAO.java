@@ -6,7 +6,7 @@ import java.util.Map;
 public interface BoardDAO {
 	
 	// 글 목록
-	List<BoardDTO> getList(Map<String, Long> map) throws Exception;
+	List<BoardDTO> getList() throws Exception;
 
 	// 글 상세보기
 	BoardDTO getDetail(BoardDTO boardDTO) throws Exception; 

@@ -37,10 +37,7 @@ public class QnaDAOTest extends MyAbstractTest {
 	
 	@Test
 	public void getListTest() throws Exception {
-		Map<String, Long> map = new HashMap<String, Long>();
-		map.put("startRow", 1L);
-		map.put("lastRow", 10L);
-		List<BoardDTO> list = qnaDAO.getList(map);
+		List<BoardDTO> list = qnaDAO.getList();
 		assertNotEquals(0, list.size());
 	}
 	

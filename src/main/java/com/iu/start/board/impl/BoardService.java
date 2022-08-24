@@ -5,7 +5,7 @@ import java.util.List;
 public interface BoardService {
 	
 	// 글 목록
-	List<BoardDTO> getList(Long p) throws Exception;
+	List<BoardDTO> getList() throws Exception;
 
 	// 글 상세보기
 	BoardDTO getDetail(BoardDTO boardDTO) throws Exception; 

@@ -15,26 +15,9 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<BoardDTO> getList(Long p) throws Exception {
-		// 페이지당 15개씩
-		Long perPage = 10L;
-		// page		startRow		lastRow
-		// 1		1				15
-		// 2		16				30
-//		Long startRow=(p*perPage)-(perPage-1);
-		Long startRow=(p-1)*perPage + 1;
-		Long lastRow=p*perPage;
+	public List<BoardDTO> getList() throws Exception {
 		
-		Map<String, Long> map = new HashMap<String, Long>();
-		map.put("startRow", startRow);
-		map.put("lastRow", lastRow);
-		/*
-		 * 글의 수가 80개
-		 * 1 - 10
-		 * 2 - 10
-		 * 
-		 * */
-		return noticeDAO.getList(map);
+		return noticeDAO.getList();
 	}
 
 	@Override

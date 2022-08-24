@@ -25,9 +25,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public String getList(Model model, @RequestParam(defaultValue = "1") Long p) throws Exception {
+	public String getList(Model model) throws Exception {
 		
-		List<BoardDTO> list = qnaService.getList(p);
+		List<BoardDTO> list = qnaService.getList();
 		model.addAttribute("list", list);
 		
 		return "board/list";

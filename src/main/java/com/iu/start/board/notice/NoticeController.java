@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
@@ -29,8 +28,8 @@ public class NoticeController {
 	
 	// 글 목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public String getList(Model model, @RequestParam(defaultValue = "1") Long p) throws Exception {
-		List<BoardDTO> list = noticeService.getList(p);
+	public String getList(Model model) throws Exception {
+		List<BoardDTO> list = noticeService.getList();
 		model.addAttribute("list", list);
 		
 		return "board/list";
