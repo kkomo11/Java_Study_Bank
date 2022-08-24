@@ -1,12 +1,11 @@
 package com.iu.start.board.notice;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardService;
+import com.iu.start.util.Pager;
 
 @Service
 public class NoticeService implements BoardService {
@@ -15,9 +14,13 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<BoardDTO> getList() throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 		
-		return noticeDAO.getList();
+		Long totalCount = noticeDAO.findCount();
+		pager.getRow();
+		pager.getNum(totalCount);
+		
+		return noticeDAO.getList(pager);
 	}
 
 	@Override

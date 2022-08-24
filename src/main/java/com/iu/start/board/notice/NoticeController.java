@@ -2,8 +2,6 @@ package com.iu.start.board.notice;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 @Controller
 @RequestMapping(value = "/notice/*")
@@ -28,8 +27,8 @@ public class NoticeController {
 	
 	// 글 목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public String getList(Model model) throws Exception {
-		List<BoardDTO> list = noticeService.getList();
+	public String getList(Model model, Pager pager) throws Exception {
+		List<BoardDTO> list = noticeService.getList(pager);
 		model.addAttribute("list", list);
 		
 		return "board/list";

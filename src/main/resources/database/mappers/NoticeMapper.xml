@@ -4,9 +4,12 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
-	<select id="getList"
+	<select id="getList" parameterType="Pager"
 		resultType="NoticeDTO">
-		SELECT * FROM NOTICE
+		SELECT * FROM
+			(SELECT ROWNUM r, n.* FROM
+				(SELECT * FROM NOTICE ORDER BY NUM DESC) n)
+		WHERE r BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO"
