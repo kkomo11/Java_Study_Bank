@@ -45,7 +45,7 @@
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
-		    <c:forEach begin="1" end="5" var="i">
+		    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
 		    	<li class="page-item"><a class="page-link" href="list.iu?page=${i}">${i}</a></li>
 		    </c:forEach>
 		    <li class="page-item">

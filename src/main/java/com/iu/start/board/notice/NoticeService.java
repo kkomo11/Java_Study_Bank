@@ -16,19 +16,11 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	
 	@Override
-	public List<BoardDTO> getList(Pager page) throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 		// 페이지당 15개씩
-//		Long perPage = 10L;
 		// page		startRow		lastRow
 		// 1		1				15
 		// 2		16				30
-//		Long startRow=(p*perPage)-(perPage-1);
-//		Long startRow=(page-1)*perPage + 1;
-//		Long lastRow=page*perPage;
-//		
-//		Map<String, Long> map = new HashMap<String, Long>();
-//		map.put("startRow", startRow);
-//		map.put("lastRow", lastRow);
 		/*
 		 * JSP에 페이지 번호 출력 1 - ?
 		 * 1. 글의 총 개수 
@@ -38,17 +30,11 @@ public class NoticeService implements BoardService {
 		 * 5. p로 현재 block 번호 찾기
 		 * 6. curBlock으로 시작번호와 끝번호 구하기
 		 * */
-//		Long totalCount = noticeDAO.findCount();
-//		Long totalPage = (long) Math.ceil((double) totalCount/perPage);
-//		
-//		Long perBlock = 5L;		
-//		Long totalBlock = (long) Math.ceil((double) totalPage/perBlock);
-//		Long curBlock = (long) Math.ceil((double) page/perBlock);
-//		
-//		Long startNum = (curBlock-1)*perBlock + 1;
-//		Long lastNum = curBlock*perBlock;
+		pager.getRowNum();
+		Long totalCount = noticeDAO.findCount();
+		pager.getNum(totalCount);
 		
-		return noticeDAO.getList(map);
+		return noticeDAO.getList(pager);
 	}
 
 	@Override

@@ -31,9 +31,10 @@ public class NoticeController {
 	// 글 목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
 	public String getList(Model model, Pager pager) throws Exception {
-		System.out.println(pager.getPage());
 		List<BoardDTO> list = noticeService.getList(pager);
+		
 		model.addAttribute("list", list);
+		model.addAttribute("pager", pager);
 		
 		return "board/list";
 	}
