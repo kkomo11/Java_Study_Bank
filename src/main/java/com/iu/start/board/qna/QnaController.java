@@ -8,9 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 @Controller
 @RequestMapping("/qna/*")
@@ -25,9 +25,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public String getList(Model model, @RequestParam(defaultValue = "1") Long p) throws Exception {
+	public String getList(Model model, Pager pager) throws Exception {
 		
-		List<BoardDTO> list = qnaService.getList(p);
+		List<BoardDTO> list = qnaService.getList(pager);
 		model.addAttribute("list", list);
 		
 		return "board/list";

@@ -19,8 +19,7 @@ public class QnaService implements BoardService {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		Map<String, Long> map = new HashMap<String, Long>();
-		return qnaDAO.getList(map);
+		return qnaDAO.getList(pager);
 	}
 
 	@Override

@@ -1,7 +1,6 @@
 package com.iu.start.board.qna;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 @Repository
 public class QnaDAO implements BoardDAO {
@@ -18,7 +18,7 @@ public class QnaDAO implements BoardDAO {
 	private final String NAMESPACE = "com.iu.start.board.qna.QnaDAO.";
 
 	@Override
-	public List<BoardDTO> getList(Map<String, Long> map) throws Exception {
+	public List<BoardDTO> getList(Pager pager) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getList");
 	}
 

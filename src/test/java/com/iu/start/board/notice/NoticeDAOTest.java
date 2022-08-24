@@ -4,15 +4,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.start.MyAbstractTest;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 public class NoticeDAOTest extends MyAbstractTest {
 
@@ -21,10 +20,8 @@ public class NoticeDAOTest extends MyAbstractTest {
 	
 //	@Test
 	public void getListTest() throws Exception {
-		Map<String, Long> map = new HashMap<String, Long>();
-		map.put("startRow", 1L);
-		map.put("lastRow", 10L);
-		List<BoardDTO> list = noticeDAO.getList(map);
+		Pager pager = new Pager();
+		List<BoardDTO> list = noticeDAO.getList(pager);
 		assertNotEquals(0, list.size());
 	}
 	

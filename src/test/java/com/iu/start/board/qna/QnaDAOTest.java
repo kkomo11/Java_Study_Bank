@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.start.MyAbstractTest;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 public class QnaDAOTest extends MyAbstractTest {
 	
@@ -37,10 +38,8 @@ public class QnaDAOTest extends MyAbstractTest {
 	
 	@Test
 	public void getListTest() throws Exception {
-		Map<String, Long> map = new HashMap<String, Long>();
-		map.put("startRow", 1L);
-		map.put("lastRow", 10L);
-		List<BoardDTO> list = qnaDAO.getList(map);
+		Pager pager = new Pager();
+		List<BoardDTO> list = qnaDAO.getList(pager);
 		assertNotEquals(0, list.size());
 	}
 	
