@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 @Controller
 @RequestMapping(value = "/notice/*")
@@ -29,8 +30,9 @@ public class NoticeController {
 	
 	// 글 목록
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public String getList(Model model, @RequestParam(defaultValue = "1") Long p) throws Exception {
-		List<BoardDTO> list = noticeService.getList(p);
+	public String getList(Model model, Pager pager) throws Exception {
+		System.out.println(pager.getPage());
+		List<BoardDTO> list = noticeService.getList(pager);
 		model.addAttribute("list", list);
 		
 		return "board/list";
