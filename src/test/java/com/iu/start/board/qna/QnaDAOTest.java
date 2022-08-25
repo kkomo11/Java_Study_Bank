@@ -38,8 +38,7 @@ public class QnaDAOTest extends MyAbstractTest {
 	
 	@Test
 	public void getListTest() throws Exception {
-		Pager pager = new Pager();
-		List<BoardDTO> list = qnaDAO.getList(pager);
+		List<BoardDTO> list = qnaDAO.getList();
 		assertNotEquals(0, list.size());
 	}
 	

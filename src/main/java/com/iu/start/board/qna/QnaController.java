@@ -25,9 +25,9 @@ public class QnaController {
 	}
 	
 	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
-	public String getList(Model model, Pager pager) throws Exception {
+	public String getList(Model model) throws Exception {
 		
-		List<BoardDTO> list = qnaService.getList(pager);
+		List<BoardDTO> list = qnaService.getList();
 		model.addAttribute("list", list);
 		
 		return "board/list";

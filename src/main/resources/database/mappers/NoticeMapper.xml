@@ -7,9 +7,9 @@
 	<select id="getList" parameterType="Pager"
 		resultType="NoticeDTO">
 		SELECT * FROM
-    		(SELECT ROWNUM R, N.* FROM
-        		(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
-        WHERE R BETWEEN #{startRow} and #{lastRow}
+			(SELECT ROWNUM r, n.* FROM
+				(SELECT * FROM NOTICE ORDER BY NUM DESC) n)
+		WHERE r BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO"
