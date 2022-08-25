@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.start.MyAbstractTest;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.util.Pager;
 
 public class NoticeDAOTest extends MyAbstractTest {
 
@@ -21,7 +22,8 @@ public class NoticeDAOTest extends MyAbstractTest {
 	
 //	@Test
 	public void getListTest() throws Exception {
-		List<BoardDTO> list = noticeDAO.getList();
+		Pager pager = new Pager();
+		List<BoardDTO> list = noticeDAO.getList(pager);
 		assertNotEquals(0, list.size());
 	}
 	

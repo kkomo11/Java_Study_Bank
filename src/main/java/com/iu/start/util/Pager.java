@@ -10,6 +10,10 @@ public class Pager {
 	private Long perPage;
 	private Long perBlock;
 	
+	// 이전, 다음 블럭의 유무
+	private boolean pre;
+	private boolean next;
+	
 	public Pager() {
 		// TODO Auto-generated constructor stub
 		this.perPage = 10L;
@@ -32,6 +36,10 @@ public class Pager {
 		// 총 글 개수
 		// 최대 페이지 수
 		Long totalPage = (long) Math.ceil((double) totalCount/this.getPerPage());
+		
+		if(this.getPage() > totalPage) {
+			this.setPage(totalPage);
+		}
 		// 최대 블럭 수
 		Long totalBlock = (long) Math.ceil((double) totalPage/this.getPerBlock());
 		// 현재 블럭이 몇 번째인지
@@ -39,6 +47,14 @@ public class Pager {
 		// 현재 블럭 startNum lastNum
 		this.startNum = (curBlock-1)*this.getPerBlock() + 1;
 		this.lastNum = curBlock*this.getPerBlock();
+		
+		if(curBlock == totalBlock) {
+			this.lastNum = totalPage;
+		}
+		
+		if(curBlock > 1) pre=true; // 현재 블럭이 1보다 클 경우 이전 버튼 필요
+		if(curBlock < totalBlock) next=true; // 현재 블럭이 최대 블럭보다 작을 경우 다음 버튼필요
+		
 	}
 	
 	public Long getStartRow() {
@@ -81,11 +97,28 @@ public class Pager {
 	}
 
 	public Long getPage() {
-		if(this.page == null) page=1L;
+		if(this.page == null || this.page <= 0) page=1L;
+		
 		return page;
 	}
 
 	public void setPage(Long page) {
 		this.page = page;
+	}
+	
+	public boolean isPre() {
+		return pre;
+	}
+
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
 	}
 }
