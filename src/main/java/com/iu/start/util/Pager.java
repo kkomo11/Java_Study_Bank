@@ -58,7 +58,6 @@ public class Pager {
 		
 		if(curBlock > 1) pre=true; // 현재 블럭이 1보다 클 경우 이전 버튼 필요
 		if(curBlock < totalBlock) next=true; // 현재 블럭이 최대 블럭보다 작을 경우 다음 버튼필요
-		
 	}
 	
 	public Long getStartRow() {

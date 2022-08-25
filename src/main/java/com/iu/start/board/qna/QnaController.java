@@ -81,8 +81,7 @@ public class QnaController {
 	}
 	
 	@GetMapping("reply.iu")
-	public ModelAndView setReply(BoardDTO boardDTO) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView setReply(BoardDTO boardDTO, ModelAndView mv) throws Exception {
 		mv.addObject("boardDTO", boardDTO);
 		mv.setViewName("board/reply");
 		
