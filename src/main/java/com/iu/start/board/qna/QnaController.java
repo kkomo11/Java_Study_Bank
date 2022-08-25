@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.util.Pager;
@@ -74,6 +77,21 @@ public class QnaController {
 	public String setDelete(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setDelete(boardDTO);
 		
+		return "redirect:list.iu";
+	}
+	
+	@GetMapping("reply.iu")
+	public ModelAndView setReply(BoardDTO boardDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("boardDTO", boardDTO);
+		mv.setViewName("board/reply");
+		
+		return mv;
+	}
+	
+	@PostMapping("reply.iu")
+	public String setReply(QnaDTO qnaDTO) throws Exception {
+		int result = qnaService.setReply(qnaDTO);
 		return "redirect:list.iu";
 	}
 }
