@@ -33,6 +33,9 @@ public class NoticeController {
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
 		
+		System.out.println(pager.getKind());
+		System.out.println(pager.getSearch());
+		
 		return "board/list";
 	}
 	
