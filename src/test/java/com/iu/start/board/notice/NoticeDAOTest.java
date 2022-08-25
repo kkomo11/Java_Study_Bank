@@ -72,7 +72,8 @@ public class NoticeDAOTest extends MyAbstractTest {
 	
 	@Test
 	public void findCountTest() throws Exception {
-		Long result = noticeDAO.findCount();
+		Pager pager = new Pager();
+		Long result = noticeDAO.findCount(pager);
 		assertEquals(0, result.compareTo(131L));
 	}
 }

@@ -1,9 +1,6 @@
 package com.iu.start.board.qna;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,9 +15,12 @@ public class QnaService implements BoardService {
 	private QnaDAO qnaDAO;
 
 	@Override
-	public List<BoardDTO> getList() throws Exception {
-		Map<String, Long> map = new HashMap<String, Long>();
-		return qnaDAO.getList();
+	public List<BoardDTO> getList(Pager pager) throws Exception {
+		Long totalCount = qnaDAO.findCount(pager);
+		pager.getNum(totalCount);
+		pager.getRow();
+		
+		return qnaDAO.getList(pager);
 	}
 
 	@Override

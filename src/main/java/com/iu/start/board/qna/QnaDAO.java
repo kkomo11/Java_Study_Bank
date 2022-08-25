@@ -18,8 +18,8 @@ public class QnaDAO implements BoardDAO {
 	private final String NAMESPACE = "com.iu.start.board.qna.QnaDAO.";
 
 	@Override
-	public List<BoardDTO> getList() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getList");
+	public List<BoardDTO> getList(Pager pager) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getList",pager);
 	}
 
 	@Override
@@ -43,8 +43,8 @@ public class QnaDAO implements BoardDAO {
 	}
 
 	@Override
-	public Long findCount() throws Exception {
-		return 0L;
+	public Long findCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"findCount", pager);
 	}
 	
 	
