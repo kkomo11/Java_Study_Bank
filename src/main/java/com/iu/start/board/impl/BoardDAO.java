@@ -1,8 +1,6 @@
 package com.iu.start.board.impl;
 
 import java.util.List;
-import java.util.Map;
-
 import com.iu.start.util.Pager;
 
 public interface BoardDAO {

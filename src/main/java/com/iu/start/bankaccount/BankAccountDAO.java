@@ -17,14 +17,12 @@ public class BankAccountDAO implements AccountDAO {
 	
 	@Override
 	public int setAccount(BankAccountDTO bankAccountDTO) throws Exception {
-		// TODO Auto-generated method stub
 		
 		return sqlSession.insert(NAMESPACE+"setAccount", bankAccountDTO);
 	}
 	
 	@Override
 	public List<BankAccountDTO> getList(BankMembersDTO bankMembersDTO) throws Exception {
-		// TODO Auto-generated method stub
 
 		return sqlSession.selectList(NAMESPACE+"getList", bankMembersDTO);
 	}

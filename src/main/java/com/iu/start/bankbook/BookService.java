@@ -1,5 +1,6 @@
 package com.iu.start.bankbook;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,9 @@ public class BookService {
 	private BankBookDAO bankBookDAO;
 	
 	int setBankBook(BankBookDTO bankBookDTO) throws Exception {
+		Calendar ca = Calendar.getInstance();	
+		bankBookDTO.setBookNum(ca.getTimeInMillis());
+				
 		return bankBookDAO.setBankBook(bankBookDTO);
 	}
 	

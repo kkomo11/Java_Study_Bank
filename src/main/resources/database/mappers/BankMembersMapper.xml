@@ -21,9 +21,9 @@
 			resultMap="getMyResultMap">
 			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE 
 			FROM BANKMEMBERS bm
-			JOIN BANKACCOUNT ba
+			LEFT JOIN BANKACCOUNT ba
 			ON bm.ID = ba.ID
-			JOIN BANKBOOK bb
+			LEFT JOIN BANKBOOK bb
 			ON ba.BOOKNUM = bb.BOOKNUM
 			WHERE bm.ID = #{id}
 		</select>

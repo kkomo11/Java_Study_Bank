@@ -26,9 +26,7 @@
 					<input type="text" class="form-control" name="name">
 				</div>
 		        <div class="input-group mb-3">
-				  	<input type="text" class="form-control" placeholder="email" name="email1">
-				 	<span class="input-group-text">@</span>
-				  	<input type="text" class="form-control" placeholder="Server" name="email2">
+				  	<input type="text" class="form-control" placeholder="email" name="email">
 				</div>
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Phone</label>
