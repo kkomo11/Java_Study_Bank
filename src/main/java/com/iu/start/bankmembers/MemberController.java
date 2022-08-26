@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller 
@@ -50,10 +51,11 @@ public class MemberController {
 	// /member/join POST
 	// 절대경로로 작성
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
-	public String join(BankMembersDTO bankMembersDTO, String email1, String email2) throws Exception {
-		String email = email1+"@"+email2;
-		bankMembersDTO.setEmail(email);
-		int result = membersService.setJoin(bankMembersDTO);
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+
+		int result = membersService.setJoin(bankMembersDTO, photo);
+
+
 		
 		return "redirect:login.iu";
 	}
@@ -86,12 +88,8 @@ public class MemberController {
 	@RequestMapping(value = "myPage.iu", method = RequestMethod.GET)
 	public void myPage(HttpSession session, Model model) throws Exception {
 		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
-	//	Map<String, Object> map = membersService.myPage(bankMembersDTO);	
-	//	model.addAttribute("map", map);
 		bankMembersDTO = membersService.myPage(bankMembersDTO);
-	//	List<BankAccountDTO> arr = accountService.getList(bankMembersDTO);
 		
 		model.addAttribute("dto", bankMembersDTO);
-	//	model.addAttribute("list", arr);
 	}
 }

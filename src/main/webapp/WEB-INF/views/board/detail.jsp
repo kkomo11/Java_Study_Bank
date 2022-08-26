@@ -20,8 +20,8 @@
 					<th>Title</th>
 					<th>Writer</th>
 					<th>RegDate</th>
-					<th>Hit</th>
 					<th>Contents</th>
+					<th>Hit</th>
 				</tr>
 			</thead>
 				
@@ -31,8 +31,8 @@
 					<td>${detail.title}</td>
 					<td>${detail.writer}</td>
 					<td>${detail.regDate}</td>
-					<td>${detail.hit}</td>
 					<td>${detail.contents}</td>
+					<td>${detail.hit}</td>
 				</tr>
 			</tbody>
 		</table>

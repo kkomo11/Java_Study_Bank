@@ -27,8 +27,6 @@ public class BookController {
 	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
 	public ModelAndView detail(BankBookDTO bankBookDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("디테일 실행");
-		System.out.println(bankBookDTO.getBookNum());
 		bankBookDTO = bookService.getDetail(bankBookDTO);
 		mv.addObject("detail", bankBookDTO);
 		mv.setViewName("book/detail");
@@ -48,9 +46,7 @@ public class BookController {
 		
 		Calendar ca = Calendar.getInstance();	
 		bankBookDTO.setBookNum(ca.getTimeInMillis());
-		System.out.println("add Post 실행");
 		int result = bookService.setBankBook(bankBookDTO);
-		System.out.println(result == 1);
 		mv.setViewName("redirect:list.iu");
 		return mv;
 	}
@@ -59,7 +55,6 @@ public class BookController {
 	public ModelAndView update(BankBookDTO dto, ModelAndView mv) throws Exception {
 		dto = bookService.getDetail(dto);
 		mv.addObject("detail", dto);
-		System.out.println("Update Get 실행");
 		mv.setViewName("book/update");
 		return mv;
 	}
@@ -67,9 +62,7 @@ public class BookController {
 	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
 	public ModelAndView update(BankBookDTO dto) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		System.out.println("Update POST 실행");
 		int result = bookService.setUpdate(dto);
-		System.out.println(result==1);
 //		mv.setViewName("redirect:detail?bookNum="+dto.getBookNum());
 		mv.setViewName("redirect:list.iu");
 		return mv;
@@ -79,7 +72,6 @@ public class BookController {
 	public ModelAndView delete(BankBookDTO dto) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = bookService.setDelete(dto);
-		System.out.println(result == 1);
 		mv.setViewName("redirect:list.iu");
 		return mv;
 	}

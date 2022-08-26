@@ -24,7 +24,6 @@ public class AccountController {
 		// 보안때문에 id를 파라미터로 넘기지 않고 Session으로 받는다.
 		bankAccountDTO.setId(((BankMembersDTO) session.getAttribute("member")).getId());
 		int result = accountService.setAccount(bankAccountDTO);
-		System.out.println(result==1);
 		
 		return "redirect:../book/list.iu";
 	}

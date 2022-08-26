@@ -11,7 +11,7 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-8 mt-5">
-		<form action="join.iu" method="post">
+		<form action="join.iu" method="post" enctype="multipart/form-data">
 			<div>
 		        <div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">ID</label>
@@ -26,13 +26,15 @@
 					<input type="text" class="form-control" name="name">
 				</div>
 		        <div class="input-group mb-3">
-				  	<input type="text" class="form-control" placeholder="email" name="email1">
-				 	<span class="input-group-text">@</span>
-				  	<input type="text" class="form-control" placeholder="Server" name="email2">
+				  	<input type="text" class="form-control" placeholder="email" name="email">
 				</div>
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Phone</label>
 					<input type="text" class="form-control" name="phone">
+				</div>
+				<div class="mb-3">
+					<label for="files" class="form-label">Photo</label>
+					<input type="file" class="form-control" name="photo" id="files">
 				</div>
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary mb-3">Confirm</button>

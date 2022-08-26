@@ -36,4 +36,9 @@ public class BankMembersDAO implements MembersDAO{
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"myPage", bankMembersDTO);
 	}
+
+	@Override
+	public int setAddFile(BankMembersFileDTO bankMembersFileDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setAddFile", bankMembersFileDTO);
+	}
 }
