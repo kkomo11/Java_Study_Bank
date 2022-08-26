@@ -7,9 +7,16 @@
 	<select id="getList" parameterType="Pager"
 		resultType="NoticeDTO">
 		SELECT * FROM
-    		(SELECT ROWNUM R, N.* FROM
-        		(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
-        WHERE R BETWEEN #{startRow} and #{lastRow}
+			(SELECT ROWNUM r, n.* FROM
+				(SELECT * FROM NOTICE WHERE
+					<choose>
+						<when test="kind == 'title'">TITLE</when>
+						<when test="kind == 'writer'">WRITER</when>
+						<otherwise>CONTENTS</otherwise>
+					</choose>
+					LIKE '%'||#{search}||'%'
+				ORDER BY NUM DESC) n)
+		WHERE r BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO"
@@ -29,7 +36,14 @@
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
 	
-	<select id="findCount" resultType="java.lang.Long">
-		SELECT COUNT(NUM) FROM NOTICE
+	<select id="findCount" parameterType="Pager"
+	resultType="java.lang.Long">
+		SELECT COUNT(NUM) FROM NOTICE WHERE
+			<choose>
+				<when test="kind == 'title'">TITLE</when>
+				<when test="kind == 'writer'">WRITER</when>
+				<otherwise>CONTENTS</otherwise>
+			</choose>
+			LIKE '%'||#{search}||'%'
 	</select>
 </mapper>

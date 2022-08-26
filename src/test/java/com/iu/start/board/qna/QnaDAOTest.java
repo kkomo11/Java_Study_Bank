@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.start.MyAbstractTest;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.notice.NoticeDTO;
 import com.iu.start.util.Pager;
 
 public class QnaDAOTest extends MyAbstractTest {
@@ -20,15 +21,21 @@ public class QnaDAOTest extends MyAbstractTest {
 
 	@Test
 	public void setAddTest() throws Exception {
-		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setTitle("title1");
-		qnaDTO.setContents("contents1");
-		qnaDTO.setWriter("writer1");
-		int result = qnaDAO.setAdd(qnaDTO);
-		assertEquals(1, result);
+		for(int i=0; i<100; i++) {
+			QnaDTO qnaDTO = new QnaDTO();
+			qnaDTO.setTitle("title"+i);
+			qnaDTO.setContents("contents"+i);
+			qnaDTO.setWriter("writer"+i);
+			
+			int num = qnaDAO.setAdd(qnaDTO);
+			
+			if(i%10==0) {
+				Thread.sleep(500);
+			}
+		}
 	}
 	
-	@Test
+//	@Test
 	public void setDetailTest() throws Exception {
 		QnaDTO qnaDTO = new QnaDTO();
 		qnaDTO.setNum(1L);
@@ -36,14 +43,14 @@ public class QnaDAOTest extends MyAbstractTest {
 		assertNotNull(qnaDTO);
 	}
 	
-	@Test
+//	@Test
 	public void getListTest() throws Exception {
 		Pager pager = new Pager();
 		List<BoardDTO> list = qnaDAO.getList(pager);
 		assertNotEquals(0, list.size());
 	}
 	
-	@Test
+//	@Test
 	public void setUpdateTest() throws Exception {
 		QnaDTO qnaDTO = new QnaDTO();
 		qnaDTO.setTitle("title1");
@@ -53,7 +60,7 @@ public class QnaDAOTest extends MyAbstractTest {
 		assertEquals(1, result);
 	}
 	
-	@Test
+//	@Test
 	public void setDeleteTest() throws Exception {
 		QnaDTO qnaDTO = new QnaDTO();
 		qnaDTO.setNum(2L);

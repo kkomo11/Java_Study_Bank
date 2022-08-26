@@ -19,7 +19,7 @@ public class QnaDAO implements BoardDAO {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getList");
+		return sqlSession.selectList(NAMESPACE+"getList",pager);
 	}
 
 	@Override
@@ -43,10 +43,15 @@ public class QnaDAO implements BoardDAO {
 	}
 
 	@Override
-	public Long findCount() throws Exception {
-		return 0L;
+	public Long findCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"findCount", pager);
 	}
 	
+	public int setStep(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setStep", qnaDTO);
+	}
 	
-
+	public int setReply(QnaDTO qnaDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setReply", qnaDTO);
+	}
 }

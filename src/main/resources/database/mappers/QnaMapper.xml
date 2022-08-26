@@ -3,8 +3,24 @@
 		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="com.iu.start.board.qna.QnaDAO">
-		<select id="getList" resultType="QnaDTO">
-			SELECT * FROM QNA
+		<sql id="search">
+			WHERE
+				<choose>
+					<when test="kind == 'title'">TITLE</when>
+					<when test="kind == 'writer'">WRITER</when>
+					<otherwise>CONTENTS</otherwise>
+				</choose>
+			LIKE '%'||#{search}||'%'
+		</sql>
+	
+		<select id="getList" parameterType="Pager"
+		resultType="QnaDTO">
+			SELECT * FROM
+				(SELECT ROWNUM r, q.* FROM
+				(SELECT * FROM QNA 
+				<include refid="search"></include>
+				ORDER BY REF DESC, STEP ASC) q)
+			WHERE r BETWEEN #{startRow} AND #{lastRow}	
 		</select>
 		
 		<select id="getDetail" parameterType="BoardDTO"
@@ -13,7 +29,10 @@
 		</select>
 		
 		<insert id="setAdd" parameterType="BoardDTO">
-			INSERT INTO QNA VALUES (QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, SYSDATE, 0, 0, 0, 0)
+			<selectKey keyProperty="num" order="BEFORE" resultType="long">
+				SELECT QNA_SEQ.NEXTVAL FROM dual
+			</selectKey>
+			INSERT INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{num}, 0, 0)
 		</insert>
 		
 		<update id="setUpdate" parameterType="BoardDTO">
@@ -23,4 +42,21 @@
 		<delete id="setDelete" parameterType="BoardDTO">
 			DELETE QNA WHERE NUM = #{num}
 		</delete>
+		
+		<select id="findCount" parameterType="Pager"
+			resultType="java.lang.Long">
+			SELECT COUNT(NUM) FROM QNA 
+			<include refid="search"></include>
+		</select>
+		
+		<update id="setStep" parameterType="QnaDTO">
+			UPDATE QNA SET step=step+1 WHERE REF = #{ref} AND STEP > #{step}
+		</update>
+		
+		<insert id="setReply" parameterType="QnaDTO">
+			<selectKey keyProperty="num" order="BEFORE" resultType="long">
+				SELECT QNA_SEQ.NEXTVAL FROM dual
+			</selectKey>
+			Insert INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
+		</insert>
 	</mapper>	

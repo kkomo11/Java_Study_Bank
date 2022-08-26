@@ -1,9 +1,6 @@
 package com.iu.start.board.qna;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +16,10 @@ public class QnaService implements BoardService {
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
+		Long totalCount = qnaDAO.findCount(pager);
+		pager.getNum(totalCount);
+		pager.getRow();
+		
 		return qnaDAO.getList(pager);
 	}
 
@@ -29,7 +30,9 @@ public class QnaService implements BoardService {
 
 	@Override
 	public int setAdd(BoardDTO boardDTO) throws Exception {
-		return qnaDAO.setAdd(boardDTO);
+		int result = qnaDAO.setAdd(boardDTO);
+		
+		return result;
 	}
 
 	@Override
@@ -42,4 +45,15 @@ public class QnaService implements BoardService {
 		return qnaDAO.setDelete(boardDTO);
 	}
 
+	public int setReply(QnaDTO qnaDTO) throws Exception {
+		QnaDTO parent = (QnaDTO) qnaDAO.getDetail(qnaDTO);
+		
+		qnaDTO.setRef(parent.getRef());
+		qnaDTO.setStep(parent.getStep()+1);
+		qnaDTO.setDepth(parent.getDepth()+1);
+		
+		qnaDAO.setStep(parent);
+		int result = qnaDAO.setReply(qnaDTO);
+		return result;
+	}
 }

@@ -23,5 +23,5 @@ public interface BoardDAO {
 	int setDelete(BoardDTO boardDTO) throws Exception;
 	
 	// 글 개수 조회
-	Long findCount() throws Exception;
+	Long findCount(Pager pager) throws Exception;
 }

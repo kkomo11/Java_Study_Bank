@@ -1,13 +1,7 @@
 package com.iu.start.util;
 
 public class Pager {
-	/*
-	 * 파라미터를 담을 변수
-	 * mapper에서 꺼내서 사용할 변수
-	 * jsp에서 꺼내서 사용할 변수
-	 * perPage : 한 화면에 출력할 글 수
-	 * perBlock : 한 화면에 출력할 페이지 수
-	 * */
+	
 	private Long page;
 	private Long startRow;
 	private Long lastRow;
@@ -16,40 +10,56 @@ public class Pager {
 	private Long perPage;
 	private Long perBlock;
 	
+	// 이전, 다음 블럭의 유무
+	private boolean pre;
+	private boolean next;
+	
+	// 검색 컬럼, 검색어
+	private String kind;
+	private String search;
+	
 	public Pager() {
 		// TODO Auto-generated constructor stub
-		this.perPage=10L;
-		this.perBlock=5L;
+		this.perPage = 10L;
+		this.perBlock = 5L;
 	}
 	
-	// 1. mapper에서 사용하는 값 계산 
-	public void getRowNum() throws Exception {
+	/**
+	 * mapper로 갈 변수 값 구하는 메소드
+	 */
+	public void getRow() {
 		this.startRow = (this.getPage()-1)*this.getPerPage() + 1;
 		this.lastRow = this.getPage()*this.getPerPage();
 	}
 	
-	// 2. jsp에서 사용하는 값 계산
-	public void getNum(Long totalCount) throws Exception {
-		// totalCount로 totalPage 구하기
+	/**
+	 * jsp로 갈 변수 값 구하는 메소드
+	 * @param totalCount DB에 있는 글 개수
+	 */
+	public void getNum(Long totalCount) {
+		// 총 글 개수
+		// 최대 페이지 수
 		Long totalPage = (long) Math.ceil((double) totalCount/this.getPerPage());
-		// 총 몇개의 블럭이 나오는가
+		
+		if(this.getPage() > totalPage) {
+			this.setPage(totalPage);
+		}
+		// 최대 블럭 수
 		Long totalBlock = (long) Math.ceil((double) totalPage/this.getPerBlock());
-		// 현재 블럭 구하기
+		// 현재 블럭이 몇 번째인지
 		Long curBlock = (long) Math.ceil((double) this.getPage()/this.getPerBlock());
-		// curBlock으로 startNum, lastNum 계산
+		// 현재 블럭 startNum lastNum
 		this.startNum = (curBlock-1)*this.getPerBlock() + 1;
 		this.lastNum = curBlock*this.getPerBlock();
+		
+		if(curBlock == totalBlock) {
+			this.lastNum = totalPage;
+		}
+		
+		if(curBlock > 1) pre=true; // 현재 블럭이 1보다 클 경우 이전 버튼 필요
+		if(curBlock < totalBlock) next=true; // 현재 블럭이 최대 블럭보다 작을 경우 다음 버튼필요
 	}
 	
-	public Long getPage() {
-		if(this.page == null) {
-			this.page=1L;
-		}
-		return page;
-	}
-	public void setPage(Long page) {
-		this.page = page;
-	}
 	public Long getStartRow() {
 		return startRow;
 	}
@@ -75,24 +85,61 @@ public class Pager {
 		this.lastNum = lastNum;
 	}
 	public Long getPerPage() {
-		if(this.perPage == null) {
-			this.perPage=10L;
-		}
+		if(this.perPage == null) this.perPage=10L;
 		return perPage;
 	}
-	
 	public void setPerPage(Long perPage) {
 		this.perPage = perPage;
 	}
-	
 	public Long getPerBlock() {
-		if(this.perBlock == null) {
-			this.perBlock=5L;
-		}
+		if(this.perBlock == null) this.perBlock=5L;
 		return perBlock;
 	}
-	
 	public void setPerBlock(Long perBlock) {
 		this.perBlock = perBlock;
 	}
+
+	public Long getPage() {
+		if(this.page == null || this.page <= 0) page=1L;
+		
+		return page;
+	}
+
+	public void setPage(Long page) {
+		this.page = page;
+	}
+	
+	public boolean isPre() {
+		return pre;
+	}
+
+	public void setPre(boolean pre) {
+		this.pre = pre;
+	}
+
+	public boolean isNext() {
+		return next;
+	}
+
+	public void setNext(boolean next) {
+		this.next = next;
+	}
+
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
+	public String getSearch() {
+		if(this.search==null) this.search="";
+		return search;
+	}
+
+	public void setSearch(String search) {
+		this.search = search;
+	}
+	
 }

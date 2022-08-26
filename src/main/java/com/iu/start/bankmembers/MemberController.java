@@ -28,7 +28,6 @@ public class MemberController {
 	// /member/login
 	@RequestMapping(value = "login.iu", method = RequestMethod.GET)
 	public String login() {
-		System.out.println("Login 실행");
 		
 		return "member/login";
 	}
@@ -36,7 +35,6 @@ public class MemberController {
 	@RequestMapping(value = "login.iu", method = RequestMethod.POST)
 	public String login(BankMembersDTO bankMembersDTO, Model model, HttpSession session) throws Exception {
 		bankMembersDTO = membersService.getLogin(bankMembersDTO);
-		System.out.println(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
 		// redirect 방법 => redirect:URL 주소(절대 or 상대)
 		return "redirect:../";
@@ -53,7 +51,6 @@ public class MemberController {
 	// 절대경로로 작성
 	@RequestMapping(value = "join.iu", method = RequestMethod.POST)
 	public String join(BankMembersDTO bankMembersDTO, String email1, String email2) throws Exception {
-		System.out.println("join POST 실행");
 		String email = email1+"@"+email2;
 		bankMembersDTO.setEmail(email);
 		int result = membersService.setJoin(bankMembersDTO);

@@ -1,7 +1,6 @@
 package com.iu.start.board.notice;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +43,7 @@ public class NoticeDAO implements BoardDAO {
 	}
 
 	@Override
-	public Long findCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"findCount");
+	public Long findCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"findCount",pager);
 	}
 }
