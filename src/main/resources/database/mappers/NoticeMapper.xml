@@ -31,7 +31,10 @@
 	</select>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
-		INSERT INTO NOTICE VALUES (BOARD_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, SYSDATE, 0)
+		<selectKey keyProperty="num" order="BEFORE" resultType="long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO NOTICE VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0)
 	</insert>
 	
 	<update id="setUpdate" parameterType="BoardDTO">
@@ -47,4 +50,8 @@
 		SELECT COUNT(NUM) FROM NOTICE 
 		<include refid="search"></include>
 	</select>
+	
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+		INSERT INTO NOTICEFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
+	</insert>
 </mapper>

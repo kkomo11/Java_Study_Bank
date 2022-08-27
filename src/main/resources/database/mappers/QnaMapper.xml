@@ -30,7 +30,7 @@
 		
 		<insert id="setAdd" parameterType="BoardDTO">
 			<selectKey keyProperty="num" order="BEFORE" resultType="long">
-				SELECT QNA_SEQ.NEXTVAL FROM dual
+				SELECT BOARD_SEQ.NEXTVAL FROM dual
 			</selectKey>
 			INSERT INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{num}, 0, 0)
 		</insert>
@@ -58,5 +58,9 @@
 				SELECT QNA_SEQ.NEXTVAL FROM dual
 			</selectKey>
 			Insert INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
+		</insert>
+		
+		<insert id="setAddFile" parameterType="BoardFileDTO">
+			INSERT INTO QNAFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
 		</insert>
 	</mapper>	

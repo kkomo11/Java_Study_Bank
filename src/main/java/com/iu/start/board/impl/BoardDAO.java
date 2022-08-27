@@ -22,4 +22,7 @@ public interface BoardDAO {
 	
 	// 글 개수 조회
 	Long findCount(Pager pager) throws Exception;
+	
+	// 파일 저장
+	int setAddFile(BoardFileDTO boardFileDTO) throws Exception;
 }
