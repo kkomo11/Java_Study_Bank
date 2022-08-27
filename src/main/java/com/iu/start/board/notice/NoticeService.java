@@ -44,7 +44,6 @@ public class NoticeService implements BoardService {
 		
 		int result = noticeDAO.setAdd(boardDTO);
 		String realPath = servletContext.getRealPath("/resources/upload/notice");
-		System.out.println(realPath);
 		for(MultipartFile photo : files) {
 			if(photo.isEmpty()) continue;
 			File file = new File(realPath);
