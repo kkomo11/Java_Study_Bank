@@ -23,7 +23,6 @@ public class MembersService {
 		
 		int result = bankMembersDAO.setJoin(bankMembersDTO);
 		String realPath = servletContext.getRealPath("/resources/upload/member");
-		System.out.println(realPath);
 		
 		File file = new File(realPath);
 		if(!file.exists()) file.mkdirs();

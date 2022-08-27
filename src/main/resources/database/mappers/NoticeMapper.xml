@@ -26,9 +26,26 @@
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO"
-		resultType="NoticeDTO">
-		SELECT * FROM NOTICE WHERE NUM = #{num}	
+		resultMap="getMyDetailMap">
+		SELECT n.NUM, n.TITLE, n.CONTENTS, n.WRITER, n.REGDATE, n.HIT, f.FILENUM, f.FILENAME FROM NOTICE n
+		LEFT JOIN
+		NOTICEFILE f
+		ON n.NUM = f.NUM
+		WHERE n.NUM = #{num}	
 	</select>
+	
+	<resultMap type="NoticeDTO" id="getMyDetailMap">
+		<id column="NUM" property="num"/>
+		<result column="TITLE" property="title"/>
+		<result column="CONTENTS" property="contents"/>
+		<result column="WRITER" property="writer"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="HIT" property="hit"/>
+		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+		</collection>
+	</resultMap>
 	
 	<insert id="setAdd" parameterType="BoardDTO">
 		<selectKey keyProperty="num" order="BEFORE" resultType="long">

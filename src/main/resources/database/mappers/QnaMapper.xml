@@ -24,9 +24,30 @@
 		</select>
 		
 		<select id="getDetail" parameterType="BoardDTO"
-			resultType="QnaDTO">
-			SELECT * FROM QNA WHERE NUM = #{num}
+			resultMap="getMyDetailMap">
+			SELECT q.NUM, q.TITLE, q.CONTENTS, q.WRITER, q.REGDATE, q.HIT, q.REF, q.STEP, q.DEPTH, f.FILENUM, f.FILENAME FROM QNA q
+			LEFT JOIN
+			QNAFILE f
+			ON (q.NUM = f.NUM)
+			WHERE q.NUM = #{num}
 		</select>
+		
+		<resultMap type="QnaDTO" id="getMyDetailMap">
+			<id column="NUM" property="num"/>
+			<result column="TITLE" property="title"/>
+			<result column="CONTENTS" property="contents"/>
+			<result column="WRITER" property="writer"/>
+			<result column="REGDATE" property="regDate"/>
+			<result column="HIT" property="hit"/>
+			<result column="REF" property="ref"/>
+			<result column="STEP" property="step"/>
+			<result column="DEPTH" property="depth"/>
+			
+			<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="FILENAME" property="fileName"/>
+			</collection>
+		</resultMap>
 		
 		<insert id="setAdd" parameterType="BoardDTO">
 			<selectKey keyProperty="num" order="BEFORE" resultType="long">
