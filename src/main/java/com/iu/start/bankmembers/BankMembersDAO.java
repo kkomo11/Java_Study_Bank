@@ -33,4 +33,10 @@ public class BankMembersDAO implements MembersDAO{
 	public BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"myPage", bankMembersDTO);
 	}
+
+	@Override
+	public int setAddFile(BankMembersFileDTO bankMembersFileDTO) throws Exception {
+		
+		return sqlSession.insert(NAMESPACE+"setAddFile", bankMembersFileDTO);
+	}
 }

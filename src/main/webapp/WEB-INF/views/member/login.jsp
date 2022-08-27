@@ -16,11 +16,11 @@
 		<form action="login.iu" method="post">	
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">ID</label>
-				<input type="text" class="form-control" name="id" value="id4">
+				<input type="text" class="form-control" name="id" value="id5">
 			</div>
 			<div class="mb-3">
 				<label for="inputPassword" class="form-label">Enter password</label>
-				<input type="password" class="form-control" name="pw" value="pw4"></input>
+				<input type="password" class="form-control" name="pw" value="pw5"></input>
 			</div>
 			<div class="col-auto">
 				<button type="submit" class="btn btn-primary mb-3">Confirm</button>

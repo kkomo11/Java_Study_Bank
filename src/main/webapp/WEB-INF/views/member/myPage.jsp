@@ -23,10 +23,6 @@
 			</thead>
 			<tbody>
 				<tr>
-					<%-- <td>${map.dto.id}</td>
-					<td>${map.dto.name}</td>
-					<td>${map.dto.email}</td>
-					<td>${map.dto.phone}</td> --%>
 					<td>${requestScope.dto.id}</td>
 					<td>${dto.name}</td>
 					<td>${dto.email}</td>
@@ -34,6 +30,7 @@
 				</tr>
 			</tbody>
 		</table>
+		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
 		
 		<table border="1" class="table table-striped">
 			<thead>
@@ -45,7 +42,6 @@
 			</thead>
 				
 			<tbody>
-					<%-- <c:forEach items="${map.list}" var="dto"> --%>
 					 <c:forEach items="${dto.bankAccountDTOs}" var="dto">
 						<tr>
 							<td>${pageScope.dto.accountNum}</td>

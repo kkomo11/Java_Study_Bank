@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller 
@@ -20,17 +21,9 @@ public class MemberController {
 	
 	@Autowired
 	private MembersService membersService;
-	
-	@Autowired
-//	private AccountService accountService;
-	
-	// annotation
-	// @ : 설명 + 실행
-	
-	// /member/login
+
 	@GetMapping("login.iu")
 	public String login() {
-		
 		return "member/login";
 	}
 	
@@ -38,7 +31,6 @@ public class MemberController {
 	public String login(BankMembersDTO bankMembersDTO, Model model, HttpSession session) throws Exception {
 		bankMembersDTO = membersService.getLogin(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
-		// redirect 방법 => redirect:URL 주소(절대 or 상대)
 		return "redirect:../";
 	}
 	
@@ -49,8 +41,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("join.iu")
-	public String join(BankMembersDTO bankMembersDTO) throws Exception {
-		int result = membersService.setJoin(bankMembersDTO);
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
+		int result = membersService.setJoin(bankMembersDTO, photo);
 		
 		return "redirect:login.iu";
 	}

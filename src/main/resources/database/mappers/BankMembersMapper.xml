@@ -19,8 +19,10 @@
 		
 		<select id="myPage" parameterType="BankMembersDTO"
 			resultMap="getMyResultMap">
-			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE 
+			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, mf.FILENUM, mf.FILENAME, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE 
 			FROM BANKMEMBERS bm
+			LEFT JOIN MEMBERFILE mf
+			on bm.ID = mf.ID
 			LEFT JOIN BANKACCOUNT ba
 			ON bm.ID = ba.ID
 			LEFT JOIN BANKBOOK bb
@@ -33,6 +35,10 @@
 			<result column="NAME" property="name"/>
 			<result column="EMAIL" property="email"/>
 			<result column="PHONE" property="phone"/>
+			<association property="bankMembersFileDTO" javaType="BankMembersFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="FILENAME" property="fileName"/>
+			</association>
 			<collection property="bankAccountDTOs" javaType="List" ofType="BankAccountDTO">
 				<id column="ACCOUNTNUM" property="accountNum"/>
 				<result column="ACCOUNTDATE" property="accountDate"/>
@@ -41,4 +47,8 @@
 				</association>
 			</collection>
 		</resultMap>
+		
+		<insert id="setAddFile" parameterType="BankMembersFileDTO">
+			INSERT INTO MEMBERFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{id})
+		</insert>
 	</mapper>
