@@ -12,7 +12,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-8 mt-5">
 		<h1>${board} Page</h1>
-		<form action="add.iu" method="post">
+		<form action="add.iu" method="post" enctype="multipart/form-data">
 			<input type="hidden" value="${member.id}" name="writer"> 
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">Enter Title</label>
@@ -21,6 +21,18 @@
 			<div class="input-group">
 	  			<span class="input-group-text">Enter Contents</span>
 	  			<textarea class="form-control" aria-label="With textarea" name="contents"></textarea>
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">File</label>
+				<input type="file" class="form-control" name="files">
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">File</label>
+				<input type="file" class="form-control" name="files">
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">File</label>
+				<input type="file" class="form-control" name="files">
 			</div>
 			<input type="submit">
 		</form>

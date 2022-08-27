@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
@@ -51,13 +52,13 @@ public class NoticeController {
 	
 	// 글 작성
 	@GetMapping("add.iu")
-	public String setAdd(Model model) throws Exception {
+	public String setAdd() throws Exception {
 		return "board/add";
 	}
 	
 	@PostMapping("add.iu")
-	public String setAdd(BoardDTO boardDTO, Model model) throws Exception {
-		int result = noticeService.setAdd(boardDTO);
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		int result = noticeService.setAdd(boardDTO, files);
 		
 		return "redirect:list.iu";
 	}
