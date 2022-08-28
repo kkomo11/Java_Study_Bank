@@ -2,8 +2,11 @@ package com.iu.start.file;
 
 import java.io.File;
 import java.util.UUID;
+
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+@Component
 public class FileUploader {
 
 	public String fileUploader(String realPath, MultipartFile photo) throws Exception {

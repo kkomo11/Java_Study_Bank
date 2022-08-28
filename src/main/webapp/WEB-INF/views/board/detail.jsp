@@ -40,6 +40,7 @@
 		<c:forEach items="${detail.boardFileDTOs}" var="dto">
 			<img alt="" src="../resources/upload/${fn:toLowerCase(board)}/${dto.fileName}">
 		</c:forEach>
+
 		<c:if test="${member.id eq detail.writer}">
 			<a href="update.iu?num=${detail.num}">수정</a>
 			<a href="delete.iu?num=${detail.num}">삭제</a>
