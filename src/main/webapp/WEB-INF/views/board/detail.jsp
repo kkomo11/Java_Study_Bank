@@ -38,7 +38,7 @@
 			</tbody>
 		</table>
 		<c:forEach items="${detail.boardFileDTOs}" var="dto">
-			<img alt="" src="../resources/upload/${fn:toLowerCase(board)}/${dto.fileName}">
+			<a href="../resources/upload/${fn:toLowerCase(board)}/${dto.fileName}">${dto.oriName}</a>
 		</c:forEach>
 
 		<c:if test="${member.id eq detail.writer}">
@@ -46,7 +46,9 @@
 			<a href="delete.iu?num=${detail.num}">삭제</a>
 		</c:if>
 		<c:if test="${member ne null and board == 'QnA'}">
-			<a href="reply.iu?num=${detail.num}" class="btn btn-dark" style="float:right;">Reply</a>
+			<p>
+				<a href="reply.iu?num=${detail.num}" class="btn btn-dark" style="float:right;">Reply</a>
+			</p>
 		</c:if>
 	</section>	
 	<c:import url="../template/footer.jsp"></c:import>

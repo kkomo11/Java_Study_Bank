@@ -1,14 +1,11 @@
 package com.iu.start.bankmembers;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.iu.start.util.FileManager;
 
 @Service
 public class MembersService {
@@ -17,20 +14,15 @@ public class MembersService {
 	private BankMembersDAO bankMembersDAO;
 	
 	@Autowired
-	private ServletContext servletContext;
+	private FileManager fileManager;
 		
 	int setJoin(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
 		
 		int result = bankMembersDAO.setJoin(bankMembersDTO);
-		String realPath = servletContext.getRealPath("/resources/upload/member");
+		String path = "/resources/upload/member";
 		
-		File file = new File(realPath);
-		if(!file.exists()) file.mkdirs();
 		if(!photo.isEmpty()) {
-			String fileName = UUID.randomUUID().toString();
-			fileName = fileName+"_"+photo.getOriginalFilename();
-			file = new File(file, fileName);
-			photo.transferTo(file);
+			String fileName = fileManager.saveFile(path, photo);
 			
 			BankMembersFileDTO bankMembersFileDTO = new BankMembersFileDTO();
 			bankMembersFileDTO.setFileName(fileName);

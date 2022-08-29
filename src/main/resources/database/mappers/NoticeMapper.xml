@@ -27,7 +27,7 @@
 	
 	<select id="getDetail" parameterType="BoardDTO"
 		resultMap="getMyDetailMap">
-		SELECT n.NUM, n.TITLE, n.CONTENTS, n.WRITER, n.REGDATE, n.HIT, f.FILENUM, f.FILENAME FROM NOTICE n
+		SELECT n.NUM, n.TITLE, n.CONTENTS, n.WRITER, n.REGDATE, n.HIT, f.FILENUM, f.FILENAME, f.ORINAME FROM NOTICE n
 		LEFT JOIN
 		NOTICEFILE f
 		ON n.NUM = f.NUM
@@ -44,6 +44,7 @@
 		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 			<id column="FILENUM" property="fileNum"/>
 			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
 		</collection>
 	</resultMap>
 	

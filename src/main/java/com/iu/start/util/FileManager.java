@@ -15,17 +15,16 @@ public class FileManager {
 	@Autowired
 	private ServletContext servletContext;
 
-	public String saveFile(String path, MultipartFile photo) throws Exception {
+	public String saveFile(String path, MultipartFile multipartFile) throws Exception {
 		String realPath = servletContext.getRealPath(path);
 		File file = new File(realPath);
 		String fileName=null;
 		if(!file.exists()) file.mkdirs();
-		if(!photo.isEmpty()) {
-			fileName = UUID.randomUUID().toString();
-			fileName = fileName+"_"+photo.getOriginalFilename();
-			file = new File(file, fileName);
-			photo.transferTo(file);
-		}
+		fileName = UUID.randomUUID().toString();
+		fileName = fileName+"_"+multipartFile.getOriginalFilename();
+		file = new File(file, fileName);
+		multipartFile.transferTo(file);
+	
 		return fileName;
 	}
 }

@@ -40,12 +40,12 @@ public class NoticeService implements BoardService {
 		
 		int result = noticeDAO.setAdd(boardDTO);
 		String path = "/resources/upload/notice";
-		for(MultipartFile photo : files) {
-				String fileName = fileManager.saveFile(path, photo);
-				if(fileName != null) {
+		for(MultipartFile multipartFile : files) {
+			if(!multipartFile.isEmpty()) {
+				String fileName = fileManager.saveFile(path, multipartFile);
 				BoardFileDTO boardFileDTO = new BoardFileDTO();
 				boardFileDTO.setFileName(fileName);
-				boardFileDTO.setOriName(photo.getOriginalFilename());
+				boardFileDTO.setOriName(multipartFile.getOriginalFilename());
 				boardFileDTO.setNum(boardDTO.getNum());
 				
 				noticeDAO.setAddFile(boardFileDTO);
