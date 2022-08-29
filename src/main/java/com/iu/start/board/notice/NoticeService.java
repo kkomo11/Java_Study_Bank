@@ -1,11 +1,6 @@
 package com.iu.start.board.notice;
 
-import java.io.File;
 import java.util.List;
-import java.util.UUID;
-
-import javax.servlet.ServletContext;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
-import com.iu.start.util.FileUploader;
+import com.iu.start.util.FileManager;
 import com.iu.start.util.Pager;
 
 @Service
@@ -23,10 +18,7 @@ public class NoticeService implements BoardService {
 	private NoticeDAO noticeDAO;
 	
 	@Autowired
-	private ServletContext servletContext;
-	
-	@Autowired
-	private FileUploader fileUploader;
+	private FileManager fileManager;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -47,9 +39,9 @@ public class NoticeService implements BoardService {
 	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
 		
 		int result = noticeDAO.setAdd(boardDTO);
-		String realPath = servletContext.getRealPath("/resources/upload/notice");
+		String path = "/resources/upload/notice";
 		for(MultipartFile photo : files) {
-				String fileName = fileUploader.fileUploader(realPath, photo);
+				String fileName = fileManager.saveFile(path, photo);
 				if(fileName != null) {
 				BoardFileDTO boardFileDTO = new BoardFileDTO();
 				boardFileDTO.setFileName(fileName);
