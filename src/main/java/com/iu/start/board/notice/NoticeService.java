@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
-import com.iu.start.file.FileUploader;
+import com.iu.start.util.FileUploader;
 import com.iu.start.util.Pager;
 
 @Service
