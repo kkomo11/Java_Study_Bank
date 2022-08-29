@@ -40,6 +40,18 @@
 				<label for="exampleFormControlInput1" class="form-label">File</label>
 				<input type="file" class="form-control" name="files">
 			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">File</label>
+				<input type="file" class="form-control" name="files">
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">File</label>
+				<input type="file" class="form-control" name="files">
+			</div>
+			<div class="mb-3">
+				<label for="exampleFormControlInput1" class="form-label">File</label>
+				<input type="file" class="form-control" name="files">
+			</div>
 			<input type="submit">
 		</form>
 	</section>

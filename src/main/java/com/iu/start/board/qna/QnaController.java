@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
@@ -27,7 +28,7 @@ public class QnaController {
 		return "QnA";
 	}
 	
-	@RequestMapping(value = "list.iu", method = RequestMethod.GET)
+	@GetMapping("list.iu")
 	public String getList(Model model, Pager pager) throws Exception {
 		
 		List<BoardDTO> list = qnaService.getList(pager);
@@ -37,7 +38,7 @@ public class QnaController {
 		return "board/list";
 	}
 	
-	@RequestMapping(value = "detail.iu", method = RequestMethod.GET)
+	@GetMapping("detail.iu")
 	public String getDetail(BoardDTO boardDTO, Model model) throws Exception {
 		
 		boardDTO = qnaService.getDetail(boardDTO);
@@ -46,19 +47,19 @@ public class QnaController {
 		return "board/detail";
 	}
 	
-	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
+	@GetMapping("add.iu")
 	public String setAdd(Model model) throws Exception {
 		return "board/add";
 	}
 	
-	@RequestMapping(value = "add.iu", method = RequestMethod.POST)
-	public String setAdd(BoardDTO boardDTO) throws Exception {
-		int result = qnaService.setAdd(boardDTO);
+	@PostMapping("add.iu")
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		int result = qnaService.setAdd(boardDTO, files);
 		
 		return "redirect:list.iu";
 	}
 	
-	@RequestMapping(value = "update.iu", method = RequestMethod.GET)
+	@GetMapping("update.iu")
 	public String setUpdate(BoardDTO boardDTO, Model model) throws Exception {
 		boardDTO = qnaService.getDetail(boardDTO);
 		model.addAttribute("dto", boardDTO);
@@ -66,14 +67,14 @@ public class QnaController {
 		return "board/update";
 	}
 	
-	@RequestMapping(value = "update.iu", method = RequestMethod.POST)
+	@PostMapping("update.iu")
 	public String setUpdate(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setUpdate(boardDTO);
 		
 		return "redirect:detail.iu?num="+boardDTO.getNum();
 	}
 	
-	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
+	@GetMapping("delete.iu")
 	public String setDelete(BoardDTO boardDTO) throws Exception {
 		int result = qnaService.setDelete(boardDTO);
 		

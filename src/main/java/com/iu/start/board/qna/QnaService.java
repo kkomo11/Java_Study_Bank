@@ -1,10 +1,17 @@
 package com.iu.start.board.qna;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
 import com.iu.start.util.Pager;
 
@@ -13,6 +20,9 @@ public class QnaService implements BoardService {
 	
 	@Autowired
 	private QnaDAO qnaDAO;
+	
+	@Autowired
+	private ServletContext servletContext;
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -29,8 +39,24 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
 		int result = qnaDAO.setAdd(boardDTO);
+		String realPath = servletContext.getRealPath("/resources/upload/qna");
+		for(MultipartFile photo : files) {
+			File file = new File(realPath);
+			if(!file.exists()) file.mkdirs();
+			if(photo.isEmpty()) continue;
+			String fileName = UUID.randomUUID().toString();
+			fileName = fileName+"_"+photo.getOriginalFilename();
+			file = new File(file, fileName);
+			photo.transferTo(file);
+			
+			BoardFileDTO boardFileDTO = new BoardFileDTO();
+			boardFileDTO.setFileName(fileName);
+			boardFileDTO.setOriName(photo.getOriginalFilename());
+			boardFileDTO.setNum(boardDTO.getNum());
+			qnaDAO.setAddFile(boardFileDTO);
+		}
 		
 		return result;
 	}

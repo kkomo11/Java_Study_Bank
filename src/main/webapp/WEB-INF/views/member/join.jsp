@@ -25,16 +25,17 @@
 					<label for="exampleFormControlInput1" class="form-label">Name</label>
 					<input type="text" class="form-control" name="name">
 				</div>
-		        <div class="input-group mb-3">
-				  	<input type="text" class="form-control" placeholder="email" name="email">
+		        <div class="mb-3">
+		        	<label for="exampleFormControlInput1" class="form-label">Email</label>
+				  	<input type="text" class="form-control" name="email">
 				</div>
 				<div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Phone</label>
 					<input type="text" class="form-control" name="phone">
 				</div>
 				<div class="mb-3">
-					<label for="files" class="form-label">Photo</label>
-					<input type="file" class="form-control" name="photo" id="files">
+					<label for="exampleFormControlInput1" class="form-label">File</label>
+					<input type="file" class="form-control" name="photo">
 				</div>
 				<div class="col-auto">
 					<button type="submit" class="btn btn-primary mb-3">Confirm</button>

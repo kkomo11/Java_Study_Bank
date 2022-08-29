@@ -19,10 +19,10 @@
 		
 		<select id="myPage" parameterType="BankMembersDTO"
 			resultMap="getMyResultMap">
-			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, mf.FILENUM, mf.FILENAME, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE
+			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, mf.FILENUM, mf.FILENAME, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE 
 			FROM BANKMEMBERS bm
 			LEFT JOIN MEMBERFILE mf
-			ON bm.id = mf.id
+			on bm.ID = mf.ID
 			LEFT JOIN BANKACCOUNT ba
 			ON bm.ID = ba.ID
 			LEFT JOIN BANKBOOK bb

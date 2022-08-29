@@ -14,7 +14,6 @@ public class BankMembersDAO implements MembersDAO{
 
 	@Override
 	public int setJoin(BankMembersDTO bankMembersDTO) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.insert(NAMESPACE+"setJoin", bankMembersDTO);
 	}
 
@@ -26,19 +25,18 @@ public class BankMembersDAO implements MembersDAO{
 
 	@Override
 	public BankMembersDTO getLogin(BankMembersDTO bankMembersDTO) throws Exception {
-		// TODO Auto-generated method stub
 		
 		return sqlSession.selectOne(NAMESPACE+"getLogin", bankMembersDTO);
 	}
 
 	@Override
 	public BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne(NAMESPACE+"myPage", bankMembersDTO);
 	}
 
 	@Override
 	public int setAddFile(BankMembersFileDTO bankMembersFileDTO) throws Exception {
+		
 		return sqlSession.insert(NAMESPACE+"setAddFile", bankMembersFileDTO);
 	}
 }

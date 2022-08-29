@@ -1,6 +1,7 @@
 package com.iu.start.file;
 
 public class FileDTO {
+
 	private Long fileNum;
 	private String fileName;
 	private String oriName;

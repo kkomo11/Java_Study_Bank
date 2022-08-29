@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.board.impl.BoardService;
+import com.iu.start.file.FileUploader;
 import com.iu.start.util.Pager;
 
 @Service
@@ -22,6 +24,9 @@ public class NoticeService implements BoardService {
 	
 	@Autowired
 	private ServletContext servletContext;
+	
+	@Autowired
+	private FileUploader fileUploader;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -39,8 +44,22 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO) throws Exception {
-		return noticeDAO.setAdd(boardDTO);
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		
+		int result = noticeDAO.setAdd(boardDTO);
+		String realPath = servletContext.getRealPath("/resources/upload/notice");
+		for(MultipartFile photo : files) {
+				String fileName = fileUploader.fileUploader(realPath, photo);
+				if(fileName != null) {
+				BoardFileDTO boardFileDTO = new BoardFileDTO();
+				boardFileDTO.setFileName(fileName);
+				boardFileDTO.setOriName(photo.getOriginalFilename());
+				boardFileDTO.setNum(boardDTO.getNum());
+				
+				noticeDAO.setAddFile(boardFileDTO);
+			}
+		}
+		return result;
 	}
 
 	@Override
@@ -51,24 +70,5 @@ public class NoticeService implements BoardService {
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.setDelete(boardDTO);
-	}
-	
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
-		
-		String realpath = servletContext.getRealPath("/resources/upload/notice");
-		
-		for(int i=0; i<files.length; i++) {
-			if(!files[i].isEmpty()) {
-				File file = new File(realpath);
-				if(!file.exists()) file.mkdirs();
-				String fileName = UUID.randomUUID().toString();
-				fileName = fileName+"_"+files[i].getOriginalFilename();
-				file = new File(file, fileName);
-				files[i].transferTo(file);
-			}
-		}
-		
-//		return noticeDAO.setAdd(boardDTO);
-		return 0;
 	}
 }

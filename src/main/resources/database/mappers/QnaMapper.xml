@@ -24,13 +24,34 @@
 		</select>
 		
 		<select id="getDetail" parameterType="BoardDTO"
-			resultType="QnaDTO">
-			SELECT * FROM QNA WHERE NUM = #{num}
+			resultMap="getMyDetailMap">
+			SELECT q.NUM, q.TITLE, q.CONTENTS, q.WRITER, q.REGDATE, q.HIT, q.REF, q.STEP, q.DEPTH, f.FILENUM, f.FILENAME FROM QNA q
+			LEFT JOIN
+			QNAFILE f
+			ON (q.NUM = f.NUM)
+			WHERE q.NUM = #{num}
 		</select>
+		
+		<resultMap type="QnaDTO" id="getMyDetailMap">
+			<id column="NUM" property="num"/>
+			<result column="TITLE" property="title"/>
+			<result column="CONTENTS" property="contents"/>
+			<result column="WRITER" property="writer"/>
+			<result column="REGDATE" property="regDate"/>
+			<result column="HIT" property="hit"/>
+			<result column="REF" property="ref"/>
+			<result column="STEP" property="step"/>
+			<result column="DEPTH" property="depth"/>
+			
+			<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+				<id column="FILENUM" property="fileNum"/>
+				<result column="FILENAME" property="fileName"/>
+			</collection>
+		</resultMap>
 		
 		<insert id="setAdd" parameterType="BoardDTO">
 			<selectKey keyProperty="num" order="BEFORE" resultType="long">
-				SELECT QNA_SEQ.NEXTVAL FROM dual
+				SELECT BOARD_SEQ.NEXTVAL FROM dual
 			</selectKey>
 			INSERT INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{num}, 0, 0)
 		</insert>
@@ -58,5 +79,9 @@
 				SELECT QNA_SEQ.NEXTVAL FROM dual
 			</selectKey>
 			Insert INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
+		</insert>
+		
+		<insert id="setAddFile" parameterType="BoardFileDTO">
+			INSERT INTO QNAFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
 		</insert>
 	</mapper>	

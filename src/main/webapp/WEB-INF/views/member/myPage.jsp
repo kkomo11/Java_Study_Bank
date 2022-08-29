@@ -12,28 +12,25 @@
 	<c:import url="../template/header.jsp"></c:import>
 	
 	<section class="container-fluid col-lg-8 mt-5">
-		<div class="row">
-			<table border="1" class="table table-striped">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Name</th>
-						<th>Email</th>
-						<th>Phone</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>${requestScope.dto.id}</td>
-						<td>${dto.name}</td>
-						<td>${dto.email}</td>
-						<td>${dto.phone}</td>
-					</tr>
-				</tbody>
-			</table>
-			
-			<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
-		</div>
+		<table border="1" class="table table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Phone</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>${requestScope.dto.id}</td>
+					<td>${dto.name}</td>
+					<td>${dto.email}</td>
+					<td>${dto.phone}</td>
+				</tr>
+			</tbody>
+		</table>
+		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
 		
 		<table border="1" class="table table-striped">
 			<thead>
@@ -45,13 +42,13 @@
 			</thead>
 				
 			<tbody>
-				<c:forEach items="${dto.bankAccountDTOs}" var="dto">
-					<tr>
-						<td>${pageScope.dto.accountNum}</td>
-						<td>${pageScope.dto.bankBookDTO.bookName}</td>
-						<td>${pageScope.dto.accountDate}</td>
-					</tr>
-				</c:forEach>
+					 <c:forEach items="${dto.bankAccountDTOs}" var="dto">
+						<tr>
+							<td>${pageScope.dto.accountNum}</td>
+							<td>${pageScope.dto.bankBookDTO.bookName}</td>
+							<td>${pageScope.dto.accountDate}</td>
+						</tr>
+					</c:forEach> 
 			</tbody>
 		</table>
 	</section>

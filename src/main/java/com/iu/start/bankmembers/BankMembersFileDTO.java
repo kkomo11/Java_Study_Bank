@@ -1,6 +1,5 @@
 package com.iu.start.bankmembers;
 
-
 import com.iu.start.file.FileDTO;
 
 public class BankMembersFileDTO extends FileDTO {
