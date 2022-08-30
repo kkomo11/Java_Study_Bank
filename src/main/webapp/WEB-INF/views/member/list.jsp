@@ -30,7 +30,7 @@
 			
 			<c:forEach items="${requestScope.list}" var="dto">
 				<tr>
-					<td>${pageScope.dto.id}</td>
+					<td>${pageScope.dto.userName}</td>
 					<td>${pageScope.dto.name}</td>
 					<td>${pageScope.dto.email}</td>
 					<td>${pageScope.dto.phone}</td>

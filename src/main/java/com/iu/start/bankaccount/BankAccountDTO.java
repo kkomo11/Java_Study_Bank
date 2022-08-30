@@ -7,7 +7,7 @@ import com.iu.start.bankbook.BankBookDTO;
 public class BankAccountDTO {
 	
 	private Long accountNum;
-	private String id;
+	private String userName;
 	private Long bookNum;
 	private Date accountDate;
 	private BankBookDTO bankBookDTO;
@@ -28,14 +28,14 @@ public class BankAccountDTO {
 		this.accountNum = accountNum;
 	}
 	
-	public String getId() {
-		return id;
+	public String getUserName() {
+		return userName;
 	}
-	
-	public void setId(String id) {
-		this.id = id;
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	
+
 	public Long getBookNum() {
 		return bookNum;
 	}

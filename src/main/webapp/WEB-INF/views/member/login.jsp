@@ -15,12 +15,12 @@
 		
 		<form id="form" action="login.iu" method="post">	
 			<div class="mb-3">
-				<label for="exampleFormControlInput1" class="form-label">ID</label>
-				<input type="text" class="form-control" name="id" value="id5" id="id">
+				<label for="userName" class="form-label">ID</label>
+				<input type="text" class="form-control" name="userName" value="id5" id="userName">
 			</div>
 			<div class="mb-3">
-				<label for="inputPassword" class="form-label">Enter password</label>
-				<input type="password" class="form-control" name="pw" value="pw5" id="pw"></input>
+				<label for="passWord" class="form-label">Enter password</label>
+				<input type="password" class="form-control" name="passWord" value="pw5" id="passWord"></input>
 			</div>
 			<p id="errMsg"></p>
 			<div class="col-auto">

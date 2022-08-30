@@ -18,7 +18,7 @@ public class AccountController {
 	@GetMapping("add.iu")
 	public String setAccount(BankAccountDTO bankAccountDTO, HttpSession session) throws Exception {
 		// 보안때문에 id를 파라미터로 넘기지 않고 Session으로 받는다.
-		bankAccountDTO.setId(((BankMembersDTO) session.getAttribute("member")).getId());
+		bankAccountDTO.setUserName(((BankMembersDTO) session.getAttribute("member")).getUserName());
 		int result = accountService.setAccount(bankAccountDTO);
 		
 		return "redirect:../book/list.iu";

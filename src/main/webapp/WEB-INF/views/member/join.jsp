@@ -15,11 +15,11 @@
 			<div>
 		        <div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">ID</label>
-					<input type="text" class="form-control" name="id">
+					<input type="text" class="form-control" name="userName">
 				</div>
 		        <div class="mb-3">
 					<label for="inputPassword" class="form-label">Enter password</label>
-					<input type="password" class="form-control" name="pw"></input>
+					<input type="password" class="form-control" name="passWord"></input>
 				</div>
 		        <div class="mb-3">
 					<label for="exampleFormControlInput1" class="form-label">Name</label>

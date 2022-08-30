@@ -19,7 +19,7 @@
 	<section class="container-fluid col-lg-8 mt-5">
 		<h1>${board} Page</h1>
 		<form action="add.iu" method="post" enctype="multipart/form-data">
-			<input type="hidden" value="${member.id}" name="writer"> 
+			<input type="hidden" value="${member.userName}" name="writer"> 
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">Enter Title</label>
 				<input type="text" class="form-control" name="title">

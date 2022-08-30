@@ -14,7 +14,7 @@
 		<h1>${board} Page</h1>
 		<form action="reply.iu" method="post">
 			<input type="hidden" value="${boardDTO.num}" name="num">
-			<input type="hidden" value="${member.id}" name="writer"> 
+			<input type="hidden" value="${member.userName}" name="writer"> 
 			<div class="mb-3">
 				<label for="exampleFormControlInput1" class="form-label">Enter Title</label>
 				<input type="text" class="form-control" name="title">

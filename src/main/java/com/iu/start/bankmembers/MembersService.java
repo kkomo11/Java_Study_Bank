@@ -27,7 +27,7 @@ public class MembersService {
 			BankMembersFileDTO bankMembersFileDTO = new BankMembersFileDTO();
 			bankMembersFileDTO.setFileName(fileName);
 			bankMembersFileDTO.setOriName(photo.getOriginalFilename());
-			bankMembersFileDTO.setId(bankMembersDTO.getId());
+			bankMembersFileDTO.setUserName(bankMembersDTO.getUserName());
 			
 			bankMembersDAO.setAddFile(bankMembersFileDTO);
 		}

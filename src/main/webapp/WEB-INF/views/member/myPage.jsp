@@ -23,7 +23,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>${requestScope.dto.id}</td>
+					<td>${requestScope.dto.userName}</td>
 					<td>${dto.name}</td>
 					<td>${dto.email}</td>
 					<td>${dto.phone}</td>

@@ -4,13 +4,14 @@ import com.iu.start.file.FileDTO;
 
 public class BankMembersFileDTO extends FileDTO {
 
-	private String id;
+	private String userName;
 
-	public String getId() {
-		return id;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
+
 }

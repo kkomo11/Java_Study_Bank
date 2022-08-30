@@ -41,7 +41,7 @@
 			<a href="../resources/upload/${fn:toLowerCase(board)}/${dto.fileName}">${dto.oriName}</a>
 		</c:forEach>
 
-		<c:if test="${member.id eq detail.writer}">
+		<c:if test="${member.userName eq detail.writer}">
 			<a href="update.iu?num=${detail.num}">수정</a>
 			<a href="delete.iu?num=${detail.num}">삭제</a>
 		</c:if>

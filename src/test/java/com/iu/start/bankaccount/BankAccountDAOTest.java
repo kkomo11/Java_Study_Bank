@@ -18,7 +18,7 @@ public class BankAccountDAOTest extends MyAbstractTest {
 	@Test
 	public void getListTest() throws Exception {
 		BankMembersDTO bankMembersDTO = new BankMembersDTO();
-		bankMembersDTO.setId("id4");
+		bankMembersDTO.setUserName("id4");
 		List<BankAccountDTO> ar = bankAccountDAO.getList(bankMembersDTO);
 		assertNotEquals(0, ar.size());
 	}

@@ -18,7 +18,6 @@
     				<input type="text" readonly class="form-control-plaintext" id="staticEmail2" value="Search">
   				</div>
   				<div class="col-auto">
-				    <label for="inputPassword2" class="visually-hidden">Password</label>
 				    <input type="text" class="form-control" name="search">
   				</div>
 				 <div class="col-auto">

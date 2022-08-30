@@ -5,8 +5,8 @@ import java.util.List;
 import com.iu.start.bankaccount.BankAccountDTO;
 
 public class BankMembersDTO {
-	private String id;
-	private String pw;
+	private String userName;
+	private String passWord;
 	private String name;
 	private String email;
 	private String phone;
@@ -29,22 +29,22 @@ public class BankMembersDTO {
 		this.bankAccountDTOs = bankAccountDTO;
 	}
 	
-	public String getId() {
-		return id;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	
-	public String getPw() {
-		return pw;
+
+	public String getPassWord() {
+		return passWord;
 	}
-	
-	public void setPw(String pw) {
-		this.pw = pw;
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
