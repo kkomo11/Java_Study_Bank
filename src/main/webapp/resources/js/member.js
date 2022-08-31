@@ -16,7 +16,7 @@ function loginCheck() {
     })
 }
 
-function check() {
+function termsCheck() {
     const allCheck = document.getElementById("allCheck");
     const btnTerms = document.getElementById("btnTerms");
     const form = document.getElementById("form");
@@ -56,4 +56,96 @@ function check() {
             errMsg.innerText="네이버 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해주세요.";
         }
     });
+}
+
+function joinCheck() {
+    const userName = document.getElementById("userName");
+    const errUserName = document.getElementById("errUserName");
+    const passWord = document.getElementById("passWord");
+    const errPassWord = document.getElementById("errPassWord");
+    const rePassWord = document.getElementById("rePassWord");
+    const errRePassWord = document.getElementById("errRePassWord");
+    const name = document.getElementById("name");
+    const errName = document.getElementById("errName");
+    const email = document.getElementById("email");
+    const errEmail = document.getElementById("errEmail");
+    const phone = document.getElementById("phone");
+    const errPhone = document.getElementById("errPhone");
+    const frmJoin = document.getElementById("frmJoin");
+    const btnJoin = document.getElementById("btnJoin");
+    let un=false;
+    let pw=false;
+    let rpw=false;
+    let na=false;
+    let em=false;
+    let ph=false;
+
+    userName.addEventListener("blur", function(){
+        if(userName.value.length <2) {
+            errUserName.innerHTML="ID는 2글자 이상이어야 합니다.";
+            un=false;
+        } else {
+            errUserName.innerHTML="";
+            un=true;
+        }
+    })
+
+    passWord.addEventListener("keyup", function(){
+        if(passWord.value.length <6) {
+            errPassWord.innerHTML="PW는 6글자 이상이어야 합니다.";
+            pw=false;
+        } else {
+            errPassWord.innerHTML="";
+            pw=true;
+        }
+    })
+
+    rePassWord.addEventListener("blur", function(){
+        if(passWord.value == rePassWord.value) {
+            errRePassWord.innerHTML="일치";
+            rpw=true;
+        } else {
+            errRePassWord.innerHTML="불일치";
+            rePassWord.value="";
+            rpw=false;
+        }
+    })
+    
+    name.addEventListener("blur", function(){
+        if(name.value.length < 1) {
+            errName.innerHTML="최소 한 글자 이상이어야 합니다.";
+            na=false;
+        } else {
+            errName.innerHTML=""
+            na=true;
+        }
+    })
+
+    email.addEventListener("blur", function(){
+        if(email.value.length < 1) {
+            errEmail.innerHTML="최소 한 글자 이상이어야 합니다.";
+            em=false;
+        } else {
+            errEmail.innerHTML="";
+            em=true;
+        }
+    })
+
+    phone.addEventListener("blur", function(){
+        if(phone.value.length < 1) {
+            errPhone.innerHTML="최소 한 글자 이상이어야 합니다.";
+            ph=false;
+        } else {
+            errPhone.innerHTML="";
+            ph=true;
+        }
+    })
+
+    btnJoin.addEventListener("click", function(){
+        if(un && pw && rpw && na && em && ph) {
+            frmJoin.submit();
+        } else {
+            alert("필수 정보입니다. 입력해주세요");
+        }
+    })
 }

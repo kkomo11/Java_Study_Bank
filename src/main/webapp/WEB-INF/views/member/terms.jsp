@@ -39,7 +39,7 @@
 
     <script src="/resources/js/member.js"></script>
     <script>
-        check();
+        termsCheck();
     </script>
 </body>
 </html> 
