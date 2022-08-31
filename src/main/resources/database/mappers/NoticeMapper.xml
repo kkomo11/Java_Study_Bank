@@ -6,10 +6,7 @@
 <mapper namespace="com.iu.start.board.notice.NoticeDAO">
 	<select id="getList" parameterType="java.util.Map"
 		resultType="NoticeDTO">
-		SELECT * FROM
-    		(SELECT ROWNUM R, N.* FROM
-        		(SELECT * FROM NOTICE ORDER BY NUM DESC) N)
-        WHERE R BETWEEN #{startRow} and #{lastRow}
+		SELECT * FROM NOTICE
 	</select>
 	
 	<select id="getDetail" parameterType="BoardDTO"
