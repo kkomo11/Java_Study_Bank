@@ -25,6 +25,5 @@ for(let i=0; i<cb.length; i++) {
         }
         console.log(c);
         if(c==cb.length) all.checked=true;
-
     })
 }
