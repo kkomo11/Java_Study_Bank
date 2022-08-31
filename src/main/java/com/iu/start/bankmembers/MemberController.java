@@ -34,6 +34,11 @@ public class MemberController {
 		return "redirect:../";
 	}
 	
+	@GetMapping("terms.iu")
+	public String getTerms() {
+		return "member/terms";
+	}
+	
 	@GetMapping("join.iu")
 	public String join() {
 		

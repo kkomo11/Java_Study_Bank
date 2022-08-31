@@ -5,33 +5,33 @@
 	<mapper namespace="com.iu.start.bankmembers.BankMembersDAO">
 		<select id="getLogin" parameterType="BankMembersDTO"
 			resultType="BankMembersDTO">
-			SELECT ID, NAME FROM BANKMEMBERS WHERE ID=#{id} and PW=#{pw}
+			SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=#{userName} and PASSWORD=#{passWord}
 		</select>
 		
 		<select id="getSearchByID" parameterType="String"
 			resultType="BankMembersDTO">
-			SELECT * FROM BANKMEMBERS WHERE ID LIKE '%'||#{search}||'%' ORDER BY ID ASC
+			SELECT * FROM BANKMEMBERS WHERE USERNAME LIKE '%'||#{search}||'%' ORDER BY USERNAME ASC
 		</select>
 		
 		<insert id="setJoin" parameterType="BankMembersDTO">
-			INSERT INTO BANKMEMBERS VALUES (#{id}, #{pw}, #{name}, #{email}, #{phone})
+			INSERT INTO BANKMEMBERS VALUES (#{userName}, #{passWord}, #{name}, #{email}, #{phone})
 		</insert>
 		
 		<select id="myPage" parameterType="BankMembersDTO"
 			resultMap="getMyResultMap">
-			SELECT bm.ID, bm.NAME, bm.EMAIL, bm.PHONE, mf.FILENUM, mf.FILENAME, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE 
+			SELECT bm.USERNAME, bm.NAME, bm.EMAIL, bm.PHONE, mf.FILENUM, mf.FILENAME, ba.ACCOUNTNUM, bb.BOOKNAME, ba.ACCOUNTDATE 
 			FROM BANKMEMBERS bm
 			LEFT JOIN MEMBERFILE mf
-			on bm.ID = mf.ID
+			on bm.USERNAME = mf.USERNAME
 			LEFT JOIN BANKACCOUNT ba
-			ON bm.ID = ba.ID
+			ON bm.USERNAME = ba.USERNAME
 			LEFT JOIN BANKBOOK bb
 			ON ba.BOOKNUM = bb.BOOKNUM
-			WHERE bm.ID = #{id}
+			WHERE bm.USERNAME = #{userName}
 		</select>
 		
 		<resultMap type="BankMembersDTO" id="getMyResultMap">
-			<id column="ID" property="id"/>
+			<id column="USERNAME" property="userName"/>
 			<result column="NAME" property="name"/>
 			<result column="EMAIL" property="email"/>
 			<result column="PHONE" property="phone"/>
@@ -49,6 +49,6 @@
 		</resultMap>
 		
 		<insert id="setAddFile" parameterType="BankMembersFileDTO">
-			INSERT INTO MEMBERFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{id})
+			INSERT INTO MEMBERFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{userName})
 		</insert>
 	</mapper>

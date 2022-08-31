@@ -21,7 +21,7 @@
                     <c:choose>						                    
                     	<c:when test="${empty member}">
 		                    <a class="nav-link" href="/member/login.iu">로그인</a>
-		                    <a class="nav-link" href="/member/join.iu">회원가입</a>
+		                    <a class="nav-link" href="/member/terms.iu">회원가입</a>
                     	</c:when>
                     	<c:otherwise>
 	    	                <a class="nav-link" href="/member/myPage.iu">마이페이지</a>
