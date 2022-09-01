@@ -91,15 +91,12 @@ function joinCheck() {
     })
 
     passWord.addEventListener("keyup", function(){
-        const pwCheck = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
-        console.log(passWord.value)
-        console.log(passWord.value.match(pwCheck))
-        console.log(pwCheck.test(passWord.value))
-        if(passWord.value.length >5 && pwCheck.test(passWord.value)) {
+        const pwCheck = /^(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{6,}$/;
+        if(pwCheck.test(passWord.value)) {
             errPassWord.innerHTML="";
             pw=true;
         } else {
-            errPassWord.innerHTML="PW는 6글자 이상이고 영문자와 숫자로 이루어져 있어야 하고 대문자가 최소 하나 필요합니다.";
+            errPassWord.innerHTML="PW는 6글자 이상이고 영문자와 숫자로 이루어져 있어야 하고 대문자와 숫자가 최소 하나 필요합니다.";
             pw=false;
         }
     })
