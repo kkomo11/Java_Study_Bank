@@ -24,8 +24,8 @@ public class NoticeService implements BoardService {
 	public List<BoardDTO> getList(Pager pager) throws Exception {
 		
 		Long totalCount = noticeDAO.findCount(pager);
-		pager.getNum(totalCount);
 		pager.getRow();
+		pager.getNum(totalCount);
 		
 		return noticeDAO.getList(pager);
 	}
