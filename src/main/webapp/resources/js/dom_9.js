@@ -27,3 +27,5 @@ btn.addEventListener("click", function(){
     console.log(d1_2_1_2.parentNode.parentNode);
     div.remove();
 })
+
+//test
