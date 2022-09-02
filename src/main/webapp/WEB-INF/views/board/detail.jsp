@@ -38,7 +38,9 @@
 			</tbody>
 		</table>
 		<c:forEach items="${detail.boardFileDTOs}" var="dto">
-			<a href="../resources/upload/${fn:toLowerCase(board)}/${dto.fileName}">${dto.oriName}</a>
+			<p>
+				<a href="../resources/upload/${fn:toLowerCase(board)}/${dto.fileName}">${dto.oriName}</a>
+			</p>
 		</c:forEach>
 
 		<c:if test="${member.userName eq detail.writer}">
