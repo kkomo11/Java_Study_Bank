@@ -18,11 +18,12 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(HttpServletResponse response) {
 	
-		Cookie cookie = new Cookie("hi", "hello");
-		cookie.setMaxAge(600);
-		response.addCookie(cookie);
-		
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "index";
 	}
-	
 }
