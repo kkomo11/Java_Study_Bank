@@ -4,13 +4,13 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.iu.start.bankaccount.BankAccountDAO">
 	<insert id="setAccount" parameterType="BankAccountDTO">
-		INSERT INTO BANKACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL,#{id},#{bookNum},SYSDATE)
+		INSERT INTO BANKACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL,#{userName},#{bookNum},SYSDATE)
 	</insert>
 	
 	<select id="getList" parameterType="BankMembersDTO"
 		resultMap="getListByUserNameResult">
 		SELECT a.ACCOUNTNUM, b.BOOKNAME, a.ACCOUNTDATE FROM BANKACCOUNT a JOIN BANKBOOK b USING(BOOKNUM)
-		WHERE a.ID = #{id}
+		WHERE a.USERNAME = #{userName}
 	</select>
 	
 	<resultMap type="BankAccountDTO" id="getListByUserNameResult">

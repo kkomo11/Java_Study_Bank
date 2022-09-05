@@ -28,17 +28,8 @@
 	  			<span class="input-group-text">Enter Contents</span>
 	  			<textarea class="form-control" aria-label="With textarea" name="contents" rows=7 id="contents"></textarea>
 			</div>
-			<div class="mb-3">
-				<label for="exampleFormControlInput1" class="form-label">File</label>
-				<input type="file" class="form-control" name="files">
-			</div>
-			<div class="mb-3">
-				<label for="exampleFormControlInput1" class="form-label">File</label>
-				<input type="file" class="form-control" name="files">
-			</div>
-			<div class="mb-3">
-				<label for="exampleFormControlInput1" class="form-label">File</label>
-				<input type="file" class="form-control" name="files">
+			<div id="addFiles">
+				<button type="button" id="fileAdd">파일 추가</button>
 			</div>
 			<input type="submit">
 		</form>
@@ -47,6 +38,7 @@
 	<c:import url="../template/footer.jsp"></c:import>
 	<!-- BootStrap -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script src="/resources/js/board_add.js"></script>
 	<script type="text/javascript">
 		$("#contents").summernote();
 	</script>

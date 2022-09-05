@@ -57,10 +57,20 @@ public class NoticeController {
 	}
 	
 	@PostMapping("add.iu")
-	public String setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+	public ModelAndView setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		ModelAndView mv = new ModelAndView();
 		int result = noticeService.setAdd(boardDTO, files);
 		
-		return "redirect:list.iu";
+		String url = "list.iu";
+		String message = "글 등록 실패";
+		if(result==1) {
+			message = "글 등록 성공";
+		}
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
+		
+		return mv;
 	}
 	
 	// 글 수정

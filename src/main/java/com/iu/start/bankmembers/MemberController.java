@@ -28,10 +28,30 @@ public class MemberController {
 	}
 	
 	@PostMapping("login.iu")
-	public String login(BankMembersDTO bankMembersDTO, Model model, HttpSession session) throws Exception {
+	public ModelAndView login(BankMembersDTO bankMembersDTO, Model model, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
 		bankMembersDTO = membersService.getLogin(bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
-		return "redirect:../";
+		
+		int result = 0;
+		String message = "로그인 실패";
+		String url = "login.iu";
+		if(bankMembersDTO != null) {
+			message = "로그인 성공";
+			result = 1;
+			url = "../";
+		}
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("terms.iu")
+	public String getTerms() {
+		return "member/terms";
 	}
 	
 	@GetMapping("join.iu")
