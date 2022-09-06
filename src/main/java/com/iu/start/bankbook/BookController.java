@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -69,8 +70,22 @@ public class BookController {
 		return mv;
 	}
 	
-	@GetMapping("commentAdd.iu")
-	public void setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+//	@PostMapping("commentAdd")
+//	public ModelAndView setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		int result = bookService.setCommentAdd(bankBookCommentDTO);
+//		mv.addObject("result", result);
+//		mv.setViewName("common/ajaxResult");
+//		
+//		return mv;
+//	}
+	
+	@PostMapping("commentAdd")
+	@ResponseBody
+	public String setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		int result = bookService.setCommentAdd(bankBookCommentDTO);
 		
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
 	}
 }

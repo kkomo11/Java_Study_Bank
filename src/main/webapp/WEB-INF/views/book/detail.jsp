@@ -45,13 +45,32 @@
 				</tr>
 			</tbody>
 		</table>
-		<a href="update.iu?bookNum=${detail.bookNum}">수정</a>
-		<a href="delete.iu?bookNum=${detail.bookNum}">삭제</a>
+		<a href="update.iu?bookNum=${detail.bookNum}" class="btn btn-primary">수정</a>
+		<a href="delete.iu?bookNum=${detail.bookNum}" class="btn btn-danger">삭제</a>
 		<c:if test="${member ne null}">
 			<a href="/account/add.iu?bookNum=${detail.bookNum}">가입</a>
 		</c:if>
+
+		<div class="row">
+			<div class="mb-3">
+				<label for="writer" class="form-label">writer</label>
+				<input type="text" class="form-control" id="writer">
+			</div>
+			<div class="mb-3">
+				<label for="contents" class="form-label">Example textarea</label>
+				<textarea class="form-control" id="contents" rows="3"></textarea>
+			</div>
+			<div class="mb-3">
+				<button type="button" id="btnCommentAdd" data-bookNum="${detail.bookNum}">댓글 작성</button>
+			</div>
+		</div>
+
+		<div id="commentList">
+			
+		</div>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
+	<script src="/resources/js/bookComment.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>
 </html>
