@@ -11,9 +11,16 @@ btnCommentAdd.addEventListener("click", function(){
     let wv = writer.value;
     let cv = contents.value;
 
+    // 객체 생성
     const xhttp = new XMLHttpRequest();
+
+    // 메소드 방식, URL
     xhttp.open("POST", "commentAdd");
+
+    // encType
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+
     xhttp.send("bookNum="+bookNum+"&writer="+wv+"&contents="+cv);
 
     xhttp.onreadystatechange=function(){
