@@ -1,5 +1,7 @@
 package com.iu.start.bankbook;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.iu.start.util.CommentPager;
 
 @Controller
 @RequestMapping("/book/*")
@@ -87,5 +91,24 @@ public class BookController {
 		
 		String jsonResult = "{\"result\":\""+result+"\"}";
 		return jsonResult;
+	}
+	
+//	@GetMapping("commentList")
+//	public ModelAndView getCommentList(CommentPager commentPager) throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		List<BankBookCommentDTO> list = bookService.getCommentList(commentPager);
+//		
+//		mv.addObject("commentList", list);
+//		mv.setViewName("common/commentList");
+//		
+//		return mv;
+//	}
+	@GetMapping("commentList")
+	@ResponseBody
+	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception {
+		
+		List<BankBookCommentDTO> list = bookService.getCommentList(commentPager);
+		
+		return list;
 	}
 }

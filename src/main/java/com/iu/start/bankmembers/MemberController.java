@@ -61,8 +61,8 @@ public class MemberController {
 	}
 	
 	@PostMapping("join.iu")
-	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo) throws Exception {
-		int result = membersService.setJoin(bankMembersDTO, photo);
+	public String join(BankMembersDTO bankMembersDTO, MultipartFile photo, HttpSession session) throws Exception {
+		int result = membersService.setJoin(bankMembersDTO, photo, session.getServletContext());
 		
 		return "redirect:login.iu";
 	}

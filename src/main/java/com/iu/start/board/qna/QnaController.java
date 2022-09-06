@@ -2,6 +2,8 @@ package com.iu.start.board.qna;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,8 +55,8 @@ public class QnaController {
 	}
 	
 	@PostMapping("add.iu")
-	public String setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
-		int result = qnaService.setAdd(boardDTO, files);
+	public String setAdd(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		int result = qnaService.setAdd(boardDTO, files, session.getServletContext());
 		
 		return "redirect:list.iu";
 	}

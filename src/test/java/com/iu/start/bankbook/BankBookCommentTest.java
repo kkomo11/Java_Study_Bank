@@ -1,19 +1,23 @@
 package com.iu.start.bankbook;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.iu.start.MyAbstractTest;
+import com.iu.start.util.CommentPager;
 
 public class BankBookCommentTest extends MyAbstractTest {
 	
 	@Autowired
 	BankBookCommentDAO bankBookCommentDAO;
 	
-	@Test
-	public void setCommentAdd() throws Exception {
+//	@Test
+	public void setCommentAddTest() throws Exception {
 		BankBookCommentDTO bankBookCommentDTO = new BankBookCommentDTO();
 		bankBookCommentDTO.setBookNum(1662359690759L);
 		bankBookCommentDTO.setContents("adfadfad");
@@ -21,5 +25,15 @@ public class BankBookCommentTest extends MyAbstractTest {
 		
 		int result = bankBookCommentDAO.setCommentAdd(bankBookCommentDTO);
 		assertEquals(1, result);
+	}
+	
+	@Test
+	public void getCommentListTest() throws Exception {
+
+		CommentPager commentPager = new CommentPager();
+		commentPager.setBookNum(1662359690759L);
+		commentPager.getRow();
+		List<BankBookCommentDTO> list = bankBookCommentDAO.getCommentList(commentPager);
+		assertNotEquals(0, list.size());
 	}
 }

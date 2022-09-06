@@ -17,6 +17,7 @@
 		<typeAlias type="com.iu.start.board.impl.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.iu.start.board.impl.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.iu.start.util.Pager" alias="Pager"/>
+		<typeAlias type="com.iu.start.util.CommentPager" alias="CommentPager"/>
 		
 	</typeAliases>
 </configuration>

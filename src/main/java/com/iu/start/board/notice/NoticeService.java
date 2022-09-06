@@ -1,6 +1,9 @@
 package com.iu.start.board.notice;
 
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -36,13 +39,13 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
 		
 		int result = noticeDAO.setAdd(boardDTO);
 		String path = "/resources/upload/notice";
 		for(MultipartFile multipartFile : files) {
 			if(!multipartFile.isEmpty()) {
-				String fileName = fileManager.saveFile(path, multipartFile);
+				String fileName = fileManager.saveFile(path, multipartFile, servletContext);
 				BoardFileDTO boardFileDTO = new BoardFileDTO();
 				boardFileDTO.setFileName(fileName);
 				boardFileDTO.setOriName(multipartFile.getOriginalFilename());

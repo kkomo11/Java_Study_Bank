@@ -1,6 +1,9 @@
 package com.iu.start.board.qna;
 
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,12 +38,12 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setAdd(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+	public int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception {
 		int result = qnaDAO.setAdd(boardDTO);
 		String path = "/resources/upload/qna";
 		for(MultipartFile photo : files) {
 			if(photo.isEmpty()) continue;
-			String fileName = fileManager.saveFile(path, photo);
+			String fileName = fileManager.saveFile(path, photo, servletContext);
 			BoardFileDTO boardFileDTO = new BoardFileDTO();
 			boardFileDTO.setFileName(fileName);
 			boardFileDTO.setOriName(photo.getOriginalFilename());

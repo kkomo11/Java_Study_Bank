@@ -7,11 +7,15 @@
 		INSERT INTO BANKBOOKCOMMENT VALUES (BOARD_SEQ.NEXTVAL, #{bookNum}, #{writer}, #{contents}, SYSDATE)
 	</insert>
 	
-	<select id="getCommentList" parameterType="BankBookCommentDTO"
+	<select id="getCommentList" parameterType="CommentPager"
 		resultType="BankBookCommentDTO">
 		SELECT * FROM (
     		SELECT ROWNUM R, C.* FROM (
         		SELECT * FROM BANKBOOKCOMMENT WHERE BOOKNUM = #{bookNum} ORDER BY NUM DESC) C)
-        WHERE R BETWEEN 1 AND 10
+        WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+	
+	<select id="findCount" parameterType="CommentPager" resultType="java.lang.Long">
+		SELECT COUNT(NUM) FROM BANKBOOKCOMMENT WHERE BOOKNUM = #{bookNum}
 	</select>
 </mapper>	
