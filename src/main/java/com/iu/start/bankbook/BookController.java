@@ -103,6 +103,7 @@ public class BookController {
 //		
 //		return mv;
 //	}
+	
 	@GetMapping("commentList")
 	@ResponseBody
 	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager) throws Exception {
