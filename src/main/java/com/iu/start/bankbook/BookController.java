@@ -61,11 +61,16 @@ public class BookController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "delete.iu", method = RequestMethod.GET)
+	@GetMapping("delete.iu")
 	public ModelAndView delete(BankBookDTO dto) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = bookService.setDelete(dto);
 		mv.setViewName("redirect:list.iu");
 		return mv;
+	}
+	
+	@GetMapping("commentAdd.iu")
+	public void setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		
 	}
 }

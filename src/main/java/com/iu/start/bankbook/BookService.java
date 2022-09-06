@@ -12,7 +12,10 @@ public class BookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
 	
-	int setBankBook(BankBookDTO bankBookDTO) throws Exception {
+	@Autowired
+	private BankBookCommentDAO bankBookCommentDAO;
+	
+	public int setBankBook(BankBookDTO bankBookDTO) throws Exception {
 		Calendar ca = Calendar.getInstance();	
 		bankBookDTO.setBookNum(ca.getTimeInMillis());
 				
@@ -20,25 +23,29 @@ public class BookService {
 	}
 	
 	// BankBook에 있는 모든 데이터 조회 최신순 정렬
-	List<BankBookDTO> getList() throws Exception {
+	public List<BankBookDTO> getList() throws Exception {
 		return bankBookDAO.getList();
 	}
 	
 	//판매여부 변경
-	int setChangeSale(BankBookDTO bankBookDTO) throws Exception {
+	public int setChangeSale(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.setChangeSale(bankBookDTO);
 	}
 	
 	// BOOKNUM의 값으로 조회 
-	BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
+	public BankBookDTO getDetail(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.getDetail(bankBookDTO);
 	}
 	
-	int setUpdate(BankBookDTO bankBookDTO) throws Exception {
+	public int setUpdate(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.setUpdate(bankBookDTO);
 	}
 	
-	int setDelete(BankBookDTO bankBookDTO) throws Exception {
+	public int setDelete(BankBookDTO bankBookDTO) throws Exception {
 		return bankBookDAO.setDelete(bankBookDTO);
+	}
+	
+	public int setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		return bankBookCommentDAO.setCommentAdd(bankBookCommentDTO);
 	}
 }
