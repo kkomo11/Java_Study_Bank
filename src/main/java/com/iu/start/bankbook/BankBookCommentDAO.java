@@ -27,4 +27,12 @@ public class BankBookCommentDAO {
 	public Long findCount(CommentPager commentPager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"findCount", commentPager);
 	}
+	
+	public int setCommentDelete(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setCommentDelete", bankBookCommentDTO);
+	}
+	
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setCommentUpdate", bankBookCommentDTO);
+	}
 }

@@ -18,4 +18,12 @@
 	<select id="findCount" parameterType="CommentPager" resultType="java.lang.Long">
 		SELECT COUNT(NUM) FROM BANKBOOKCOMMENT WHERE BOOKNUM = #{bookNum}
 	</select>
+	
+	<delete id="setCommentDelete" parameterType="BankBookCommentDTO">
+		DELETE BANKBOOKCOMMENT WHERE NUM = #{num}
+	</delete>
+	
+	<update id="setCommentUpdate" parameterType="BankBookCommentDTO">
+		UPDATE BANKBOOKCOMMENT SET CONTENTS=#{contents} WHERE NUM=#{num}
+	</update>
 </mapper>	

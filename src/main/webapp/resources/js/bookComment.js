@@ -109,10 +109,36 @@ more.onclick=function() {
 }
 
 commentList.onclick=function(event) {
-    if(event.target.classList[0]=="delete") {
+    if(event.target.className=="delete") {
         let check = window.confirm("삭제하시겠습니까?");
         if(check) {
-            alert(event.target.getAttribute("data-comment-num"));
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "commentDelete");
+            // encType
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("num="+event.target.getAttribute("data-comment-num"));
+
+            xhttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200) {
+                    if(this.responseText==1) {
+                        for(let i=0; i<commentList.children.length;) {
+                            commentList.children[0].remove(); 
+                         }
+                         page=1;
+                        getCommentList(page, bookNum);
+                    } else {
+                        alert("삭제 실패");
+                    }
+                }
+            }
         }
+    }
+
+    if(event.target.className=="update") {
+        // let contents = event.target.previousSibling.previousSibling.previousSibling
+        // console.log(contents);
+        // let v = contents.innerHTML;
+        // contents.innerHTML="<textarea>"+v+"</textarea>";
+        document.querySelector("#up").click();
     }
 }
