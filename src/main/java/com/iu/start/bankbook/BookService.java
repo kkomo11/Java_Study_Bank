@@ -55,7 +55,7 @@ public class BookService {
 		
 		Long totalCount = bankBookCommentDAO.findCount(commentPager);
 		commentPager.getRow();
-		commentPager.getNum(totalCount);
+		commentPager.setTotalPage(totalCount);
 		
 		return bankBookCommentDAO.getCommentList(commentPager);
 	}

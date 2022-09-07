@@ -65,9 +65,10 @@
 			</div>
 		</div>
 
-		<div id="commentList">
-			
+		<div>
+			<table id="commentList" class="table"></table>
 		</div>
+		<button id="more" class="btn btn-danger disabled">더보기</button>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	<script src="/resources/js/bookComment.js"></script>
