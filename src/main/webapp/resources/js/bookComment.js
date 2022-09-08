@@ -3,6 +3,8 @@ const writer = document.querySelector("#writer");
 const contents = document.querySelector("#contents");
 const commentList = document.querySelector("#commentList");
 const more = document.querySelector("#more");
+const updateWriter = document.querySelector("#updateWriter");
+const btnUpdate = document.querySelector("#btnUpdate");
 let page=1;
 const bookNum = btnCommentAdd.getAttribute("data-bookNum");
 
@@ -68,6 +70,8 @@ function getCommentList(p, bn) {
                 tr.appendChild(td);
 
                 td = document.createElement("td");
+                // let objDate = new Date(list[i].regDate);
+                // rDate = objDate.getFullYear()+"-"+(objDate.getMonth()+1)+"-"+objDate.getDate();
                 text = document.createTextNode(list[i].regDate);
                 td.appendChild(text);
                 tr.appendChild(td);
@@ -76,6 +80,9 @@ function getCommentList(p, bn) {
                 text = document.createTextNode("수정");
                 let tdAttr = document.createAttribute("class");
                 tdAttr.value="update";
+                td.setAttributeNode(tdAttr);
+                tdAttr = document.createAttribute("data-comment-num");
+                tdAttr.value=list[i].num;
                 td.setAttributeNode(tdAttr);
                 td.appendChild(text);
                 tr.appendChild(td);
@@ -135,10 +142,32 @@ commentList.onclick=function(event) {
     }
 
     if(event.target.className=="update") {
-        // let contents = event.target.previousSibling.previousSibling.previousSibling
-        // console.log(contents);
-        // let v = contents.innerHTML;
-        // contents.innerHTML="<textarea>"+v+"</textarea>";
+        console.log(event.target)
+         let writer = event.target.previousSibling.previousSibling.previousSibling;
+         let contents = event.target.previousSibling.previousSibling;
+         let num = event.target.getAttribute("data-comment-num");
         document.querySelector("#up").click();
+        document.querySelector("#message").value=contents.innerHTML;
+        updateWriter.value=writer.innerHTML;
+        document.querySelector("#num").value=num;
+    }
+}
+
+btnUpdate.onclick=function() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "commentUpdate");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("num="+document.querySelector("#num").value+"&contents="+document.querySelector("#message").value);
+    xhttp.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200) {
+           if(this.responseText==1) {
+            for(let i=0; i<commentList.children.length;) {
+                commentList.children[0].remove(); 
+            }
+            page=1;
+            getCommentList(page, bookNum);
+            document.querySelector("#btnClose").click();
+           }
+        }
     }
 }
