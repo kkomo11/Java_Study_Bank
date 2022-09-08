@@ -65,9 +65,7 @@
 				</tbody>
 			</table>
 		</div>
-		<c:if test="${not empty member}">
-			<a href="add.iu">글 작성</a>
-		</c:if>
+			<a class="btn btn-primary" href="add.iu">글 작성</a>
 		<nav aria-label="Page navigation example">
 		  <ul class="pagination">
 		    <li class="page-item ${pager.pre?'':'disabled'}">

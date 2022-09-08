@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.start.bankmembers.BankMembersDTO;
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.util.Pager;
 
@@ -54,8 +55,13 @@ public class NoticeController {
 	
 	// 글 작성
 	@GetMapping("add.iu")
-	public String setAdd() throws Exception {
-		return "board/add";
+	public String setAdd(HttpSession session) throws Exception {
+		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
+		if(bankMembersDTO!=null) {			
+			return "board/add";
+		} else {
+			return "redirect:../member/login.iu";
+		}
 	}
 	
 	@PostMapping("add.iu")
