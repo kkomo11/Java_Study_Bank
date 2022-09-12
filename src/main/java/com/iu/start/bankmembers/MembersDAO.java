@@ -15,4 +15,6 @@ public interface MembersDAO {
 	BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception;
 	
 	int setAddFile(BankMembersFileDTO bankMembersFileDTO) throws Exception;
+	
+	BankMembersDTO duplicateCheck(BankMembersDTO bankMembersDTO) throws Exception;
 }

@@ -51,4 +51,9 @@
 		<insert id="setAddFile" parameterType="BankMembersFileDTO">
 			INSERT INTO MEMBERFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{userName})
 		</insert>
+		
+		<select id="duplicateCheck" parameterType="BankMembersDTO"
+			resultType="BankMembersDTO">
+			SELECT * FROM BANKMEMBERS WHERE USERNAME = #{userName}
+		</select>
 	</mapper>

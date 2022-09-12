@@ -39,4 +39,10 @@ public class BankMembersDAO implements MembersDAO{
 		
 		return sqlSession.insert(NAMESPACE+"setAddFile", bankMembersFileDTO);
 	}
+
+	@Override
+	public BankMembersDTO duplicateCheck(BankMembersDTO bankMembersDTO) throws Exception {
+		
+		return sqlSession.selectOne(NAMESPACE+"duplicateCheck", bankMembersDTO);
+	}
 }

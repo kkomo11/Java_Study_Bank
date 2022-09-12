@@ -38,15 +38,19 @@ public class MembersService {
 	}
 	
 	// 검색어 입력 ID 찾기 abc순
-	List<BankMembersDTO> getSearchByID(String search) throws Exception {
+	public List<BankMembersDTO> getSearchByID(String search) throws Exception {
 		return bankMembersDAO.getSearchByID(search);
 	}
 	
-	BankMembersDTO getLogin(BankMembersDTO bankMembersDTO) throws Exception {
+	public BankMembersDTO getLogin(BankMembersDTO bankMembersDTO) throws Exception {
 		return bankMembersDAO.getLogin(bankMembersDTO);
 	}
 	
 	public BankMembersDTO myPage(BankMembersDTO bankMembersDTO) throws Exception {
 		return bankMembersDAO.myPage(bankMembersDTO);
+	}
+	
+	public BankMembersDTO duplicateCheck(BankMembersDTO bankMembersDTO) throws Exception {
+		return bankMembersDAO.duplicateCheck(bankMembersDTO);
 	}
 }

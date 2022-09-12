@@ -85,8 +85,21 @@ function joinCheck() {
             errUserName.innerHTML="ID는 2글자 이상이어야 합니다.";
             un=false;
         } else {
-            errUserName.innerHTML="";
-            un=true;
+            const xhttp = new XMLHttpRequest();
+            xhttp.open("POST", "duplicateCheck");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("userName="+userName.value);
+            xhttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200) {
+                    if(this.responseText=="") {
+                        errUserName.innerHTML="";
+                        un=true;
+                    } else {
+                        errUserName.innerHTML="ID 중복";
+                        un=false;
+                    }
+                }
+            }
         }
     })
 
