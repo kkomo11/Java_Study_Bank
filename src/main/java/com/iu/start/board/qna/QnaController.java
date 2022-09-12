@@ -41,10 +41,10 @@ public class QnaController {
 	}
 	
 	@GetMapping("detail.iu")
-	public String getDetail(BoardDTO boardDTO, Model model) throws Exception {
+	public String getDetail(BoardDTO dto, Model model) throws Exception {
 		
-		boardDTO = qnaService.getDetail(boardDTO);
-		model.addAttribute("detail", boardDTO);
+		dto = qnaService.getDetail(dto);
+		model.addAttribute("detail", dto);
 		
 		return "board/detail";
 	}

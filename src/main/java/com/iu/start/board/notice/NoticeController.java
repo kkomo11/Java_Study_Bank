@@ -44,12 +44,12 @@ public class NoticeController {
 	
 	// 글 상세
 	@GetMapping("detail.iu")
-	public ModelAndView getDetail(BoardDTO boardDTO) throws Exception {
+	public ModelAndView getDetail(BoardDTO dto) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		boardDTO = noticeService.getDetail(boardDTO);
-		mv.addObject("detail", boardDTO);
+		dto = noticeService.getDetail(dto);
+		mv.addObject("detail", dto);
 		mv.setViewName("board/detail");
-		
+		System.out.println("Controller Mv : "+mv.getModel());
 		return mv;
 	}
 	

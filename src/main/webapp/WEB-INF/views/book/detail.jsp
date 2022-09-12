@@ -47,9 +47,8 @@
 		</table>
 		<a href="update.iu?bookNum=${detail.bookNum}" class="btn btn-primary">수정</a>
 		<a href="delete.iu?bookNum=${detail.bookNum}" class="btn btn-danger">삭제</a>
-		<c:if test="${member ne null}">
-			<a href="/account/add.iu?bookNum=${detail.bookNum}">가입</a>
-		</c:if>
+		<a href="/account/add.iu?bookNum=${detail.bookNum}">가입</a>
+
 
 		<div class="row">
 			<div class="mb-3">

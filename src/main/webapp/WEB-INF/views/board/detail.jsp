@@ -40,11 +40,9 @@
 		<c:forEach items="${detail.boardFileDTOs}" var="dto">
 			<a href="../resources/upload/${fn:toLowerCase(board)}/${dto.fileName}">${dto.oriName}</a>
 		</c:forEach>
+		<a href="update.iu?num=${detail.num}">수정</a>
+		<a href="delete.iu?num=${detail.num}">삭제</a>
 
-		<c:if test="${member.userName eq detail.writer}">
-			<a href="update.iu?num=${detail.num}">수정</a>
-			<a href="delete.iu?num=${detail.num}">삭제</a>
-		</c:if>
 		<c:if test="${member ne null and board == 'QnA'}">
 			<p>
 				<a href="reply.iu?num=${detail.num}" class="btn btn-dark" style="float:right;">Reply</a>

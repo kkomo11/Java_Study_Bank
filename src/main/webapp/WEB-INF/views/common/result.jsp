@@ -9,7 +9,6 @@
 <body>
 	<script type="text/javascript">
 		alert('${message}');
-		alert(${result});
 		location.href="${url}";
 	</script>
 </body>
