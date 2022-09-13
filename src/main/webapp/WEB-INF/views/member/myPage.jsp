@@ -33,10 +33,10 @@
 		<img alt="" src="../resources/upload/member/${dto.bankMembersFileDTO.fileName}">
 		
 		<div>
-			<c:forEach items="${member.roleDTOs}" var="roleDTO">
+			<%-- <c:forEach items="${member.roleDTOs}" var="roleDTO">
 				<div>${roleDTO.roleNum}, ${roleDTO.roleName}</div>
 			</c:forEach>
-			<h1>당신은 ${member.roleDTOs.get(0).roleName} 등급입니다</h1>
+			<h1>당신은 ${member.roleDTOs.get(0).roleName} 등급입니다</h1> --%>
 			<h1>당신은 ${member.roleDTOs["0"].roleName} 등급입니다</h1>
 		</div>
 		<table border="1" class="table table-striped">
