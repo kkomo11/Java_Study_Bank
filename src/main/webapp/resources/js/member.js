@@ -95,6 +95,7 @@ function joinCheck() {
                         errUserName.innerHTML="";
                         un=true;
                     } else {
+                        userName.focus();
                         errUserName.innerHTML="ID 중복";
                         un=false;
                     }

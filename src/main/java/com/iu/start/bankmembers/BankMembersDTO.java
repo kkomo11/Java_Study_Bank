@@ -12,7 +12,16 @@ public class BankMembersDTO {
 	private String phone;
 	private List<BankAccountDTO> bankAccountDTOs;
 	private BankMembersFileDTO bankMembersFileDTO;
+	private List<RoleDTO> RoleDTOs;
 	
+	public List<RoleDTO> getRoleDTOs() {
+		return RoleDTOs;
+	}
+
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		RoleDTOs = roleDTOs;
+	}
+
 	public BankMembersFileDTO getBankMembersFileDTO() {
 		return bankMembersFileDTO;
 	}

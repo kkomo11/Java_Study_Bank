@@ -4,9 +4,27 @@
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="com.iu.start.bankmembers.BankMembersDAO">
 		<select id="getLogin" parameterType="BankMembersDTO"
-			resultType="BankMembersDTO">
-			SELECT USERNAME, NAME FROM BANKMEMBERS WHERE USERNAME=#{userName} and PASSWORD=#{passWord}
+			resultMap="getLoginResult">
+			SELECT BM.USERNAME, BM.NAME, RO.ROLENAME, RO.ROLENUM
+			FROM BANKMEMBERS BM
+			JOIN
+			MEMBER_ROLE MR
+			ON BM.USERNAME = MR.USERNAME
+			JOIN
+			ROLE RO
+			ON MR.ROLENUM = RO.ROLENUM 
+			WHERE BM.USERNAME=#{userName} and BM.PASSWORD=#{passWord}
+			ORDER BY RO.ROLENUM ASC
 		</select>
+		
+		<resultMap type="BankMembersDTO" id="getLoginResult">
+			<id column="USERNAME" property="userName"/>
+			<result column="NAME" property="name"/>
+			<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+				<id column="ROLENUM" property="roleNum"/>
+				<result column="ROLENAME" property="roleName"/>
+			</collection>
+		</resultMap>
 		
 		<select id="getSearchByID" parameterType="String"
 			resultType="BankMembersDTO">

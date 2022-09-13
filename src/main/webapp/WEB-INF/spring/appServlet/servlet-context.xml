@@ -22,23 +22,22 @@
 	</beans:bean>
 	
 	<beans:bean class="com.iu.start.interceptor.TestInterceptor" id="testInterceptor"></beans:bean>
+	<beans:bean class="com.iu.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
 	
 	<interceptors>
-		<!-- 
 		<interceptor>
-			<mapping path="/qna/*"/>
-			<mapping path="/member/myPage.iu"/>
-			<exclude-mapping path="/qna/list.iu"/>
-			<beans:bean class="com.iu.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
-		</interceptor> -->
-		<interceptor>
+			<mapping path="/notice/add.iu"/>
 			<mapping path="/notice/update.iu"/>
-			<mapping path="/qna/update.iu"/>
-			<beans:bean class="com.iu.start.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
+			<mapping path="/notice/delete.iu"/>
+			<mapping path="/qna/**"/>
+			<exclude-mapping path="/qna/list.iu"/>
+			<beans:ref bean="memberInterceptor"/>
 		</interceptor>
 		<interceptor>
-			<mapping path="/**"/>
-			<beans:ref bean="testInterceptor"/>
+			<mapping path="/notice/add.iu"/>
+			<mapping path="/notice/update.iu"/>
+			<mapping path="/notice/delete.iu"/>
+			<beans:bean class="com.iu.start.interceptor.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
 		</interceptor>
 	</interceptors>
 	
