@@ -20,8 +20,10 @@ public interface BoardService {
 	int setAdd(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception;
 		
 	// 글 수정
-	int setUpdate(BoardDTO boardDTO) throws Exception;
+	int setUpdate(BoardDTO boardDTO, MultipartFile[] files, ServletContext servletContext) throws Exception;
 		
 	// 글 삭제
 	int setDelete(BoardDTO boardDTO) throws Exception;
+	
+	int setFileDelete(BoardFileDTO boardFileDTO, ServletContext servletContext) throws Exception;
 }

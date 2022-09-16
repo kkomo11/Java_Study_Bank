@@ -13,11 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.bankmembers.BankMembersDTO;
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.impl.BoardFileDTO;
 import com.iu.start.util.Pager;
 
 @Controller
@@ -39,10 +41,6 @@ public class NoticeController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("pager", pager);
-		
-		if(list.size() != 0) {
-			throw new Exception();
-		}
 		
 		return "board/list";
 	}
@@ -96,8 +94,8 @@ public class NoticeController {
 	}
 	
 	@PostMapping("update.iu")
-	public String setUpdate(BoardDTO boardDTO) throws Exception {
-		int result = noticeService.setUpdate(boardDTO);
+	public String setUpdate(BoardDTO boardDTO, MultipartFile[] files, HttpSession session) throws Exception {
+		int result = noticeService.setUpdate(boardDTO, files, session.getServletContext());
 		
 		return "redirect:detail.iu?num="+boardDTO.getNum();
 	}	
@@ -108,5 +106,12 @@ public class NoticeController {
 		int result = noticeService.setDelete(boardDTO);
 		
 		return "redirect:list.iu";
+	}
+	
+	@PostMapping("fileDelete")
+	@ResponseBody
+	public int setFileDelete(BoardFileDTO boardFileDTO, HttpSession session) throws Exception {
+		
+		return noticeService.setFileDelete(boardFileDTO, session.getServletContext());
 	}
 }

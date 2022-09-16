@@ -9,21 +9,21 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/error/*")
 public class FrontErrorController {
 	
-	@GetMapping("error400")
-	public ModelAndView error400() throws Exception {
-		ModelAndView mv = new ModelAndView();
-		System.out.println("파라미터 틀림");
-		mv.setViewName("errors/error_404");
-		
-		return mv;
-	}
-	
-	@GetMapping("error500")
-	public ModelAndView error500() throws Exception {
-		ModelAndView mv = new ModelAndView();
-		System.out.println("백엔드 에러");
-		mv.setViewName("errors/error_404");
-		
-		return mv;
-	}
+//	@GetMapping("error400")
+//	public ModelAndView error400() throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("파라미터 틀림");
+//		mv.setViewName("errors/error_404");
+//		
+//		return mv;
+//	}
+//	
+//	@GetMapping("error500")
+//	public ModelAndView error500() throws Exception {
+//		ModelAndView mv = new ModelAndView();
+//		System.out.println("백엔드 에러");
+//		mv.setViewName("errors/error_404");
+//		
+//		return mv;
+//	}
 }

@@ -72,4 +72,13 @@
 	<insert id="setAddFile" parameterType="BoardFileDTO">
 		INSERT INTO NOTICEFILE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
 	</insert>
+	
+	<delete id="setFileDelete" parameterType="BoardFileDTO">
+		DELETE NOTICEFILE WHERE FILENUM = #{fileNum}
+	</delete>
+	
+	<select id="getFileDetail" parameterType="BoardFileDTO"
+		resultType="BoardFileDTO">
+		SELECT * FROM NOTICEFILE WHERE FILENUM = #{fileNum}	
+	</select>
 </mapper>

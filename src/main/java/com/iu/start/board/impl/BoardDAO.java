@@ -1,6 +1,9 @@
 package com.iu.start.board.impl;
 
 import java.util.List;
+
+import javax.servlet.ServletContext;
+
 import com.iu.start.util.Pager;
 
 public interface BoardDAO {
@@ -25,4 +28,8 @@ public interface BoardDAO {
 	
 	// 파일 저장
 	int setAddFile(BoardFileDTO boardFileDTO) throws Exception;
+	
+	int setFileDelete(BoardFileDTO boardFileDTO) throws Exception;
+	
+	BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception;
 }

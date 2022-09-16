@@ -12,7 +12,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid col-lg-8 mt-5">
 		<h1>${board} Page</h1>
-		<form action="update.iu" method="post">
+		<form action="update.iu" method="post" enctype="multipart/form-data">
 		
 			<input type="hidden" value="${dto.num}" name="num">
 			<div class="mb-3">
@@ -25,11 +25,26 @@
 	  			<textarea class="form-control" aria-label="With textarea" name="contents" >${dto.contents}</textarea>
 			</div>
 			
+			<c:forEach items="${dto.boardFileDTOs}" var="fileDTO">
+              <div class="mb-3">
+                 <span>${fileDTO.oriName}</span>
+                 <button type="button" class="fileDelete" data-file-num="${fileDTO.fileNum}">삭제</button>
+              </div>
+            </c:forEach>
+
+			<div id="addFiles">
+				<button type="button" id="fileAdd">파일 추가</button>
+			</div>
+			
 			<button type="submit">수정</button>
 		</form>
 	</section>
 	<c:import url="../template/footer.jsp"></c:import>
 	
+	<script src="/resources/js/board_add.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+	<script>
+		setCount(${dto.boardFileDTOs.size()});
+	</script>
 </body>
 </html>
